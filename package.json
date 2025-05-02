@@ -1,0 +1,29 @@
+{
+  "name": "testcafe",
+  "version": "1.0.0",
+  "description": "Automated testing with TestCafe",
+  "main": "index.js",
+  "scripts": {
+    "test:chrome": "testcafe chrome ./tests -s takeOnFails=true --skip-js-errors",
+    "test:chrome:2": "testcafe -c 2 chrome ./tests -s takeOnFails=true --skip-js-errors",
+    "test:chrome:headless": "testcafe chrome:headless ./tests -s takeOnFails=true",
+    "test:chrome:mobile": "testcafe chrome:emulation:device=iphone X ./tests -s takeOnFails=true",
+    "test:edge": "testcafe edge ./tests -s takeOnFails=true",
+    "test:edge:5": "testcafe -c 5 edge ./tests -s takeOnFails=true",
+    "test:edge:headless": "testcafe edge:headless ./tests -s takeOnFails=true",
+    "test:edge:headless:5": "testcafe -c 5 edge:headless ./tests -s takeOnFails=true",
+    "test:multiple": "testcafe chrome,edge ./tests -s takeOnFails=true",
+    "test": "npm run test:chrome && npm run test:edge"
+  },
+  "keywords": [
+    "TestCafe",
+    "Testing",
+    "Automation"
+  ],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "prettier": "^3.5.3",
+    "testcafe": "^3.7.2"
+  }
+}

@@ -1,0 +1,14 @@
+# Node modules
+node_modules/
+
+# TestCafe screenshots & videos
+screenshots/
+videos/
+
+# IDE settings
+.vscode/
+.idea/
+
+# OS files
+.DS_Store
+Thumbs.db
