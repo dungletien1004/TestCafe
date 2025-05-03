@@ -1,4 +1,4 @@
-import { Selector } from "testcafe";
+import { Selector, t } from "testcafe";
 
 export default class OpenFilePage {
     constructor() {

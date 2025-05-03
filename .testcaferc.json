@@ -1,5 +1,7 @@
 {
-    "screenshotPath": "./screenshots",
-    "screenshotPathPattern": "${DATE}_${TIME}/${FIXTURE}.png",
-    "proxyBypass": ["http://r2.3dviewer.anybim.vn"]
+    "skipJsErrors": true,
+    "pageLoadTimeout": 60000,
+    "hostname": "localhost",
+    "disableNativeAutomation": false,
+    "disableMultipleWindows": true
 }
