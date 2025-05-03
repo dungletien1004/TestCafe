@@ -1,4 +1,5 @@
 {
     "screenshotPath": "./screenshots",
-    "screenshotPathPattern": "${DATE}_${TIME}/${FIXTURE}.png"
+    "screenshotPathPattern": "${DATE}_${TIME}/${FIXTURE}.png",
+    "proxyBypass": ["http://r2.3dviewer.anybim.vn"]
 }
