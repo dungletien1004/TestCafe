@@ -4,7 +4,7 @@ const textBox = new TextBox();
 fixture('Text Box Form Test')
     .page('https://demoqa.com/text-box');
 
-test.only('User can fill and submit text box form', async t => {
+test('User can fill and submit text box form', async t => {
     await textBox.fillFormAndSubmit({
         userName: 'dung',
         userEmail: 'dung@example.com',
