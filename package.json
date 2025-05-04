@@ -6,9 +6,9 @@
   "scripts": {
     "test:http": "testcafe \"chrome --incognito --disable-http2 --disable-features=StrictOriginIsolation\" ./tests",
     "test:chrome": "testcafe chrome ./tests --disable-proxy --disable-native-automation",
+    "test:chrome:5": "node reportWithTime.js testcafe -c 5 chrome ./tests --disable-proxy --disable-native-automation takeOnFails=true",
     "test:edge": "testcafe edge ./tests -s takeOnFails=true --skip-js-errors",
     "test:chrome:report": "node reportWithTime.js testcafe chrome ./tests -s takeOnFails=true --skip-js-errors",
-    "test:chrome:2": "node reportWithTime.js testcafe -c 2 chrome ./tests -s takeOnFails=true --skip-js-errors",
     "test:chrome:headless": "testcafe chrome:headless ./tests -s takeOnFails=true",
     "test:chrome:mobile": "node reportWithTime.js testcafe chrome:emulation:device=iphone X ./tests -s takeOnFails=true",
     "test:edge:report": "node reportWithTime.js testcafe edge ./tests -s takeOnFails=true",
@@ -28,7 +28,8 @@
   "license": "ISC",
   "dependencies": {
     "prettier": "^3.5.3",
-    "testcafe": "^3.7.2"
+    "testcafe": "^3.7.2",
+    "xlsx": "^0.18.5"
   },
   "devDependencies": {
     "testcafe-reporter-html": "^1.4.6"

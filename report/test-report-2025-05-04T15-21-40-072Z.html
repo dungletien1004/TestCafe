@@ -1,0 +1,311 @@
+The "disableNativeAutomation" option from the configuration file will be ignored.
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css" integrity="sha384-rHyoN1iRsVXV4nD0JutlnGaslCJuC7uwjduW9SVrLvRYooPp2bWYgmgJQIXwl/Sp" crossorigin="anonymous">
+    <link rel="stylesheet" href="https://cdn.rawgit.com/drvic10k/bootstrap-sortable/ff650fd1/Contents/bootstrap-sortable.css">
+    <script
+            src="https://code.jquery.com/jquery-3.3.1.min.js"
+            integrity="sha256-FgpCb/KJQlLNfOu91ta32o/NMZxltwRo8QtmkMRdAu8="
+            crossorigin="anonymous"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js" integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa" crossorigin="anonymous"></script>
+    <script src="https://cdn.rawgit.com/drvic10k/bootstrap-sortable/ff650fd1/Scripts/bootstrap-sortable.js"></script>
+    <script src="https://cdn.rawgit.com/drvic10k/bootstrap-sortable/ff650fd1/Scripts/moment.min.js"></script>
+    <style>
+      body {font-family: Arial, Helvetica, sans-serif;}
+
+      .thumbImg {
+        width: 100%;
+        max-width: 35px;
+        border-radius: 3px;
+        cursor: pointer;
+        margin-bottom: 5px;
+        border-width: 1px;
+        border-color: #f1f1f1;
+        border-style: solid;
+      }
+
+      .modal {
+        display: none;
+        position: fixed;
+        z-index: 1;
+        padding-top: 100px;
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: 100%;
+        overflow: auto;
+        background-color: rgba(0,0,0,0.7);
+      }
+
+      .modal-content {
+        margin: auto;
+        display: block;
+        width: 80%;
+        max-width: 700px;
+      }
+
+      .closeModal {
+        position: absolute;
+        top: 15px;
+        right: 35px;
+        color: #f1f1f1;
+        font-size: 40px;
+        font-weight: bold;
+        transition: 0.3s;
+      }
+
+      .closeModal:hover,
+      .closeModal:focus {
+        cursor: pointer;
+      }
+    </style>
+  </head>
+  <body>
+    <div id="myModal" class="modal">
+      <span class="closeModal">&times;</span>
+      <img class="modal-content" id="modelImage">
+    </div>
+    <div class="container">
+
+      <h1 class="text-primary">TestCafe Test Summary</h1>
+      <div class="client-logo" style="padding:15px"></div>
+      <div class="bg-primary" style="padding:15px;box-shadow: 6px 6px 6px 6px #00000033;border-radius: 10px;">
+        <h3>Summary</h3><br>
+        <p class="lead">Start Time: Sun May 04 2025 22:21:47 GMT+0700 (Indochina Time)</p>
+        <p class="lead">Browsers: Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</p>
+        <p class="lead">Duration: 1m 38s</p>
+        <p class="lead">Tests Failed: 2 out of 18</p>
+        <p class="lead">Tests Skipped: 0</p>
+      </div><br>
+      <table class="table sortable" style="padding:15px;box-shadow: 6px 6px 6px 6px #00000033;border-radius: 10px;">
+        <thead>
+          <tr>
+            <th>#</th>
+            <th>Fixture</th>
+            <th>Test Name</th>
+            <th>Browsers</th>
+            <th>Duration</th>
+            <th>Result</th>
+          </tr>
+        </thead>
+        <tbody>
+           <tr class="success">
+  <td>1</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Positive acad-Drawing-diff-formats-Sht3_LastSaved_Zoomed.dwg</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>36s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="success">
+  <td>2</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Positive 001-6896-013-000.pdf</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>44s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="danger">
+  <td>3</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Positive 0011-00100678-E-601_Plot of Actual.pdf</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>46s</td>
+  <td><a href="#test-3">failed</a></td>
+ </tr>
+ <tr class="success">
+  <td>4</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Positive 0 PH-U0-PR5-2074.DWG</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>38s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="success">
+  <td>5</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Positive 0000.dwg</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>34s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="success">
+  <td>6</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Positive 000000 VIACOMCBS DIV-BORDER-E.dwg</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>26s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="success">
+  <td>7</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Positive 0.bnc.hsf</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>29s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="success">
+  <td>8</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Positive bnc.hsf</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>26s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="danger">
+  <td>9</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Positive 00635-00.SLDDRW</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>18s</td>
+  <td><a href="#test-9">failed</a></td>
+ </tr>
+ <tr class="success">
+  <td>10</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Negative 12345ASDASDA</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>16s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="success">
+  <td>11</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Negative FILENASMASDASD</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>22s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="success">
+  <td>12</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Negative ÁDFASDFASDSS</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>21s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="success">
+  <td>13</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Negative AAAAAAAAAAAAAAAA</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>15s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="success">
+  <td>14</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Negative CCCCCCCCCCCCCCCCCC</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>21s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="success">
+  <td>15</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Negative DDDDDDDDDDD</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>18s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="success">
+  <td>16</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Negative EEEEEEEEEEEEEEEEE</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>15s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="success">
+  <td>17</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Negative FFFFFFFFFFFFFFFFFF</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>14s</td>
+  <td>passed</td>
+ </tr>
+ <tr class="success">
+  <td>18</td>
+  <td>Open file R2.3dviewer</td>
+  <td>Open file Negative ZZZZZZZZZZZZZZZZZZZZZZZ</td>
+  <td>Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11, Chrome 135.0.0.0 / Windows 11</td>
+  <td>15s</td>
+  <td>passed</td>
+ </tr>
+
+        </tbody>
+        <thead>
+          <tr>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+            <th></th>
+          </tr>
+        </thead>
+      </table>
+      <br>
+      <h3>Error Details</h3>
+       <h4 id="test-3" style="color: red;">3. Open file R2.3dviewer - Open file Positive 0011-00100678-E-601_Plot of Actual.pdf</h4>
+ <pre style="padding:15px;box-shadow: 6px 6px 6px 6px #00000033;border-radius: 10px;">Error: ⏰ Timeout 10000ms: Tên file vẫn là &quot;File name&quot; (chưa được load)
+
+Browser: Chrome 135.0.0.0 / Windows 11
+
+   17 |      await t.wait(300); // chờ 300ms rồi kiểm tra lại
+   18 |      currentName = await this.getFileName();
+   19 |    &#125
+   20 |  
+   21 |    if (currentName === &#39;File name&#39;) &#123
+ &gt; 22 |      throw new Error(`⏰ Timeout ${timeout}ms: Tên file vẫn là &quot;File name&quot; (chưa được load)`);
+   23 |    }
+   24 |  
+   25 |    return currentName;
+   26 |  }
+   27 |
+
+   at &lt;anonymous&gt; (E:\Synergis\TestCafe\TestCafe\page-object\pages\viewFilePage.js:22:13)
+   at asyncGeneratorStep (E:\Synergis\TestCafe\TestCafe\page-object\pages\viewFilePage.js:1:40)
+   at _next (E:\Synergis\TestCafe\TestCafe\page-object\pages\viewFilePage.js:1:40) </pre><br> <h4 id="test-9" style="color: red;">9. Open file R2.3dviewer - Open file Positive 00635-00.SLDDRW</h4>
+ <pre style="padding:15px;box-shadow: 6px 6px 6px 6px #00000033;border-radius: 10px;">Error: ❌ Caching error
+
+Browser: Chrome 135.0.0.0 / Windows 11
+
+   69 |            const currentUrl = await getLocation();
+   70 |            const status = await this.getStatus();
+   71 |    
+   72 |            // Nếu thấy lỗi thì fail ngay
+   73 |            if (status === &#39;Error&#39;) &#123
+ &gt; 74 |                throw new Error(`❌ Caching error`);
+   75 |            &#125
+   76 |    
+   77 |            // Nếu URL chứa đoạn cần thiết → pass
+   78 |            if (currentUrl.includes(expectedPart)) {
+   79 |                return;
+
+   at &lt;anonymous&gt; (E:\Synergis\TestCafe\TestCafe\page-object\pages\openFilePage.js:74:23)
+   at asyncGeneratorStep (E:\Synergis\TestCafe\TestCafe\page-object\pages\openFilePage.js:1:56)
+   at _next (E:\Synergis\TestCafe\TestCafe\page-object\pages\openFilePage.js:1:56) </pre><br>
+    </div>
+    <script>
+      const modal = document.getElementById('myModal');
+      const modalImage = document.getElementById("modelImage");
+
+      Array.from(document.getElementsByClassName("thumbImg")).forEach(function(el) {
+        el.onclick = function() {
+          modal.style.display = "block";
+          modalImage.src = this.src;
+        }
+      });
+
+      document.getElementsByClassName("closeModal")[0].onclick = function() {
+        modal.style.display = "none";
+      }
+    </script>
+  </body>
+  <br>
+</html>
