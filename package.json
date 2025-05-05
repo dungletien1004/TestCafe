@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test:http": "testcafe \"chrome --incognito --disable-http2 --disable-features=StrictOriginIsolation\" ./tests",
-    "test:chrome": "testcafe chrome ./tests --disable-proxy --disable-native-automation",
-    "test:chrome:5": "node reportWithTime.js testcafe -c 5 chrome ./tests --disable-proxy --disable-native-automation takeOnFails=true",
+    "test:chrome": "node reportWithTime.js testcafe chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
+    "test:chrome:5": "node reportWithTime.js testcafe -c 5 chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:edge": "testcafe edge ./tests -s takeOnFails=true --skip-js-errors",
     "test:chrome:report": "node reportWithTime.js testcafe chrome ./tests -s takeOnFails=true --skip-js-errors",
     "test:chrome:headless": "testcafe chrome:headless ./tests -s takeOnFails=true",

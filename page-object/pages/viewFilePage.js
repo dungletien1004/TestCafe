@@ -14,12 +14,12 @@ export default class ViewFilePage {
     let currentName = await this.getFileName();
   
     while (currentName === 'File name' && (Date.now() - start) < timeout) {
-      await t.wait(300); // chờ 300ms rồi kiểm tra lại
+      await t.wait(300); // wait 300ms then check again
       currentName = await this.getFileName();
     }
   
     if (currentName === 'File name') {
-      throw new Error(`⏰ Timeout ${timeout}ms: Tên file vẫn là "File name" (chưa được load)`);
+      throw new Error(`⏰ Timeout ${timeout}ms: The file name is still not visible on the screen.`);
     }
   
     return currentName;

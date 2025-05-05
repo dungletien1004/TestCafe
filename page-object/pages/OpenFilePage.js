@@ -11,7 +11,7 @@ export default class OpenFilePage {
         this.selectedFilenames = this.selectedListContainer.find('.filename');
         this.statusContainer = Selector('.status-contain');
         this.statusText = this.statusContainer.find('span');
-        // Nút "View" nằm trong <mat-card-footer> bên trong vùng selected
+        // "View" button is in <mat-card-footer> inside selected area
         this.viewButton = this.selectedListContainer.find('mat-card-footer button').withText('View');
     }
 
@@ -36,12 +36,12 @@ export default class OpenFilePage {
         await t.expect(this.getFilename(index).exists).ok();
     }
 
-     // Kiểm tra xem có file nào được chọn
+    // Check if any file is selected
     async isAnyFileSelected() {
         return this.selectedFilenames.count > 0;
     }
 
-    // Kiểm tra xem một file cụ thể đã được chọn chưa
+    // Check if a specific file is selected
     getSelectedFileByName(name) {
         return this.selectedFilenames.withText(name);
     }
@@ -58,7 +58,7 @@ export default class OpenFilePage {
     // async waitForUrlToChange(expectedPart, timeout = 100000) {
     //     await t.expect(getLocation()).contains(expectedPart, {
     //         timeout,
-    //         message: `URL không chứa "${expectedPart}" sau ${timeout}ms`
+    //         message: `URL not contains "${expectedPart}" after ${timeout}ms`
     //     });
     // }
 
@@ -69,20 +69,20 @@ export default class OpenFilePage {
             const currentUrl = await getLocation();
             const status = await this.getStatus();
     
-            // Nếu thấy lỗi thì fail ngay
+            // If found error, fail immediately
             if (status === 'Error') {
                 throw new Error(`❌ Caching error`);
             }
     
-            // Nếu URL chứa đoạn cần thiết → pass
+            // If URL contains the expected part → pass
             if (currentUrl.includes(expectedPart)) {
                 return;
             }
     
-            await t.wait(500); // chờ một chút rồi kiểm tra lại
+            await t.wait(500); // wait a moment then check again
         }
     
-        // Nếu sau timeout vẫn không có URL mong muốn → fail
-        throw new Error(`⏰ Hết ${timeout}ms nhưng URL không chứa "${expectedPart}"`);
+        // If after timeout, URL is not the expected part → fail
+        throw new Error(`⏰ Timeout ${timeout}ms but URL not contains "${expectedPart}"`);
     }
 }
