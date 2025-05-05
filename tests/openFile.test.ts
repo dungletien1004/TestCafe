@@ -33,12 +33,12 @@ fileNames.forEach((item) => {
 
     // ✅ If expect = false, assert the file should not be found and skip the rest
     if (!item.expect) {
-      await t.expect(fileItem.exists).notOk(`File "${fileName}" should NOT be found`);
+      await t.expect(fileItem.exists).notOk(`File "${fileName}" was found but should NOT exist in search results`);
       return;
     }
 
     // ✅ Expect = true: proceed to open and validate the file
-    await t.expect(fileItem.exists).ok(`File "${fileName}" should exist but was NOT found`);
+    await t.expect(fileItem.exists).ok(`Expected file "${fileName}" to be found, but it was not.`);
 
     await openFilePage.clickItem(t, 0);
 
@@ -59,7 +59,7 @@ fileNames.forEach((item) => {
     await t.expect(currentUrl).contains('/main?AUTHCODE', 'URL is not correct after click View');
 
     // 7. check file name in view page
-    await viewFilePage.waitForRealFileName();
+    await viewFilePage.waitForRealFileName(20000);
     const fileNameInView = await viewFilePage.getFileName();
     await t.expect(fileNameInView).contains(fileName, `File name is not correct in View Page, fileNameInView: ${fileNameInView}`);
   });
