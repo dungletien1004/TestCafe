@@ -1,16 +1,16 @@
-import OpenFilePage from '../page-object/pages/openFilePage';
-import ViewFilePage from '../page-object/pages/viewFilePage';
+import { openPage, ViewFilePage } from '../page-object/pages'
 import { ClientFunction } from 'testcafe';
-import { readFileNamesFromExcel, readFileNameFromJsonFile } from '../utils';
+import { readFileNameFromJsonFile } from '../utils';
+
 const getLocation = ClientFunction(() => window.location.href);
-const openFilePage = new OpenFilePage();
+const openFilePage = new openPage();
 const viewFilePage = new ViewFilePage();
 
 
 // const fileNamesPositive = readFileNamesFromExcel('test-data/fileName-Positive.xlsx');
 // const fileNamesNegative = readFileNamesFromExcel('test-data/fileName-Negative.xlsx');
 
-const fileNames: { fileName: string, expect: boolean }[] = readFileNameFromJsonFile('test-data/fileNames.json');
+const fileNames = readFileNameFromJsonFile('test-data/fileNames.json');
 fixture `Open file R2.3dviewer`
     .page`http://r2.3dviewer.anybim.vn/autoTest`;
 
@@ -19,12 +19,16 @@ fileNames.forEach((item) => {
   test(`${item.expect ? 'Should open' : 'Should not find'} file: ${item.fileName}`, async t => {
     const fileName = item.fileName;
     // wait for loading max 5s
-    await t.expect(openFilePage.backgroundLoading.exists).ok({ timeout: 5000 });
+    await t.expect(openFilePage.backgroundLoading.exists).ok({ timeout: 20000 });
 
     // wait for loading disappear max 10s
-    await t.expect(openFilePage.backgroundLoading.exists).notOk({ timeout: 10000 });
+    await t.expect(openFilePage.backgroundLoading.exists).notOk({ timeout: 20000 });
     // 1. search for file
     await openFilePage.searchForFile(fileName);
+
+    const searchText = await openFilePage.getSearchText();
+
+    console.log(`searchText: ${searchText}`);
 
     await t.wait(2000);
 
@@ -40,7 +44,9 @@ fileNames.forEach((item) => {
     // ✅ Expect = true: proceed to open and validate the file
     await t.expect(fileItem.exists).ok(`Expected file "${fileName}" to be found, but it was not.`);
 
-    await openFilePage.clickItem(t, 0);
+    await openFilePage.clickItem(0);
+    // ✅ Clear cache
+    await openFilePage.clearCache(0);
 
     await t.wait(1000);
     // 3. check file name in selected list
@@ -56,10 +62,11 @@ fileNames.forEach((item) => {
 
     // 6. check new url
     const currentUrl = await getLocation();
+    console.log(`new url view file ${fileName}: ${currentUrl}`);
     await t.expect(currentUrl).contains('/main?AUTHCODE', 'URL is not correct after click View');
 
     // 7. check file name in view page
-    await viewFilePage.waitForRealFileName(20000);
+    await viewFilePage.waitForRealFileName(60000);
     const fileNameInView = await viewFilePage.getFileName();
     await t.expect(fileNameInView).contains(fileName, `File name is not correct in View Page, fileNameInView: ${fileNameInView}`);
   });

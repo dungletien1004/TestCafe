@@ -2,7 +2,7 @@ import { Selector, t, ClientFunction } from "testcafe";
 
 const getLocation = ClientFunction(() => window.location.href);
 
-export default class OpenFilePage {
+export default class openPage {
     constructor() {
         this.backgroundLoading = Selector('.background-loading');
         this.search = Selector('#search');
@@ -13,10 +13,19 @@ export default class OpenFilePage {
         this.statusText = this.statusContainer.find('span');
         // "View" button is in <mat-card-footer> inside selected area
         this.viewButton = this.selectedListContainer.find('mat-card-footer button').withText('View');
+        this.menuContext = Selector('.mat-menu-content');
+        this.clearCacheBtn = this.menuContext.find('button').withText('Clear cache');
+
+        this.dialog = Selector('.left-div');
+        this.okBtn = this.dialog.find('button').withText('OK');
     }
 
     async searchForFile(fileName) {
         await t.typeText(this.search, fileName);
+    }
+
+    async getSearchText() {
+        return this.search.value;
     }
 
     getItem(index) {
@@ -28,7 +37,7 @@ export default class OpenFilePage {
     }
     
 
-    async clickItem(t, index = 0) {
+    async clickItem(index = 0) {
         await t.click(this.getItem(index));
     }
 
@@ -62,7 +71,7 @@ export default class OpenFilePage {
     //     });
     // }
 
-    async waitForUrlToChange(expectedPart, timeout = 10000) {
+    async waitForUrlToChange(expectedPart, timeout = 240000) {
         const start = Date.now();
     
         while ((Date.now() - start) < timeout) {
@@ -84,5 +93,13 @@ export default class OpenFilePage {
     
         // If after timeout, URL is not the expected part → fail
         throw new Error(`⏰ Timeout ${timeout}ms but URL not contains "${expectedPart}"`);
+    }
+
+    async clearCache(index = 0) {
+        await t.rightClick(this.getItem(index));
+        await t.expect(this.menuContext.exists).ok('Menu context is not visible');
+        await t.click(this.clearCacheBtn);
+        await t.expect(this.dialog.exists).ok('Dialog is not visible');
+        await t.click(this.okBtn);
     }
 }

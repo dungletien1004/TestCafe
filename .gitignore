@@ -2,7 +2,7 @@
 node_modules/
 
 # TestCafe screenshots & videos
-screenshots/
+# screenshots/
 videos/
 
 # IDE settings
@@ -13,4 +13,4 @@ videos/
 .DS_Store
 Thumbs.db
 report/
-screenshots/
+# screenshots/

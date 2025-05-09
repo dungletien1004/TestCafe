@@ -1,0 +1,33 @@
+name: TestCafe E2E Tests
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: ⬇️ Checkout source code
+      uses: actions/checkout@v3
+
+    - name: 🟢 Setup Node.js
+      uses: actions/setup-node@v3
+      with:
+        node-version: '18'
+
+    - name: 📦 Install dependencies
+      run: npm install
+
+    - name: 🧪 Run TestCafe tests (headless Chrome)
+      run: npm run test:chrome:headless
+
+    - name: 📤 Upload screenshots on fail
+      if: failure()
+      uses: actions/upload-artifact@master
+      with:
+        name: testcafe-screenshots
+        path: screenshots

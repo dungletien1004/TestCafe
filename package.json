@@ -5,19 +5,13 @@
   "main": "index.js",
   "scripts": {
     "test:http": "testcafe \"chrome --incognito --disable-http2 --disable-features=StrictOriginIsolation\" ./tests",
-    "test:chrome": "node reportWithTime.js testcafe chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
+    "test:chrome": "testcafe chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome:5": "node reportWithTime.js testcafe -c 5 chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
-    "test:edge": "testcafe edge ./tests -s takeOnFails=true --skip-js-errors",
-    "test:chrome:report": "node reportWithTime.js testcafe chrome ./tests -s takeOnFails=true --skip-js-errors",
-    "test:chrome:headless": "testcafe chrome:headless ./tests -s takeOnFails=true",
+    "test:chrome:headless": "testcafe -c 5 chrome:headless ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome:mobile": "node reportWithTime.js testcafe chrome:emulation:device=iphone X ./tests -s takeOnFails=true",
     "test:edge:report": "node reportWithTime.js testcafe edge ./tests -s takeOnFails=true",
-    "test:edge:5": "node reportWithTime.js testcafe -c 5 edge ./tests -s takeOnFails=true",
-    "test:edge:headless": "node reportWithTime.js testcafe edge:headless ./tests -s takeOnFails=true",
     "test:edge:headless:5": "node reportWithTime.js testcafe -c 5 edge:headless ./tests -s takeOnFails=true",
-    "test:multiple": "node reportWithTime.js testcafe chrome,edge ./tests -s takeOnFails=true",
-    "test": "npm run test:chrome && npm run test:edge",
-    "test:firefox": "testcafe firefox ./tests --hostname localhost --ssl-insecure"
+    "test": "npm run test:chrome && npm run test:edge"
   },
   "keywords": [
     "TestCafe",

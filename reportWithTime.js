@@ -23,9 +23,9 @@ console.log(`▶️ Running: ${fullCmd}`);
 // Chạy lệnh
 exec(fullCmd, (error, stdout, stderr) => {
   if (error) {
-    console.error(`❌ Lỗi khi chạy lệnh:\n${error.message}`);
+    console.error(`❌ Error:\n${error.message}`);
     return;
   }
   if (stderr) console.error(stderr);
-  console.log(`✅ Test hoàn tất. Báo cáo lưu tại: ${reportPath}`);
+  console.log(`✅ Test completed. Report saved at: ${reportPath}`);
 });
