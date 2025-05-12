@@ -33,20 +33,22 @@ fileNames.forEach((item) => {
     await t.wait(2000);
 
     // 2. check file found and click first file (found result)
-    const fileItem = openFilePage.getItem(0);
+    const fileItem = await openFilePage.getItem(fileName);
 
     // ✅ If expect = false, assert the file should not be found and skip the rest
     if (!item.expect) {
-      await t.expect(fileItem.exists).notOk(`File "${fileName}" was found but should NOT exist in search results`);
+      if (fileItem) {
+        await t.expect(fileItem.exists).notOk(`File "${fileName}" was found but should NOT exist in search results`);
+      }
       return;
     }
 
     // ✅ Expect = true: proceed to open and validate the file
     await t.expect(fileItem.exists).ok(`Expected file "${fileName}" to be found, but it was not.`);
 
-    await openFilePage.clickItem(0);
+    await openFilePage.clickItem(fileName);
     // ✅ Clear cache
-    await openFilePage.clearCache(0);
+    await openFilePage.clearCache(fileName);
 
     await t.wait(1000);
     // 3. check file name in selected list

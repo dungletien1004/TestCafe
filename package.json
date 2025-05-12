@@ -6,7 +6,8 @@
   "scripts": {
     "test:http": "testcafe \"chrome --incognito --disable-http2 --disable-features=StrictOriginIsolation\" ./tests",
     "test:chrome": "testcafe chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
-    "test:chrome:5": "node reportWithTime.js testcafe -c 5 chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
+    "test:chrome:2": "testcafe -c 2 chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
+    "test:chrome:5": "testcafe -c 5 chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome:headless": "testcafe -c 5 chrome:headless ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome:mobile": "node reportWithTime.js testcafe chrome:emulation:device=iphone X ./tests -s takeOnFails=true",
     "test:edge:report": "node reportWithTime.js testcafe edge ./tests -s takeOnFails=true",

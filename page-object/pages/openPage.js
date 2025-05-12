@@ -6,7 +6,7 @@ export default class openPage {
     constructor() {
         this.backgroundLoading = Selector('.background-loading');
         this.search = Selector('#search');
-        this.item = Selector('mat-list-item');
+        this.item = Selector('mat-card-content mat-list-item');
         this.selectedListContainer = Selector('.selected-file-lists');
         this.selectedFilenames = this.selectedListContainer.find('.filename');
         this.statusContainer = Selector('.status-contain');
@@ -28,27 +28,29 @@ export default class openPage {
         return this.search.value;
     }
 
-    getItem(index) {
-        return this.item.nth(index);
+    async getItem(fileName) {
+        const itemCount = await this.item.count;
+        for (let i = 0; i < itemCount; i++) {
+            const item = this.item.nth(i);
+            const text = await item.find('.filename').innerText;
+            if (text.trim() === fileName.trim()) {
+                return item;
+            }
+        }
+        return null;
     }
 
-    getFilename(index) {
-        return this.getItem(index).find('.filename');
-    }
     
 
-    async clickItem(index = 0) {
-        await t.click(this.getItem(index));
+    async clickItem(fileName) {
+        const item = await this.getItem(fileName);
+        if (item) {
+            await t.click(item);
+        } else {
+            throw new Error(`File "${fileName}" not found`);
+        }
     }
-
-    async checkFileNameSelected(t, index = 0) {
-        await t.expect(this.getFilename(index).exists).ok();
-    }
-
-    // Check if any file is selected
-    async isAnyFileSelected() {
-        return this.selectedFilenames.count > 0;
-    }
+    
 
     // Check if a specific file is selected
     getSelectedFileByName(name) {
@@ -95,11 +97,16 @@ export default class openPage {
         throw new Error(`⏰ Timeout ${timeout}ms but URL not contains "${expectedPart}"`);
     }
 
-    async clearCache(index = 0) {
-        await t.rightClick(this.getItem(index));
-        await t.expect(this.menuContext.exists).ok('Menu context is not visible');
-        await t.click(this.clearCacheBtn);
-        await t.expect(this.dialog.exists).ok('Dialog is not visible');
-        await t.click(this.okBtn);
+    async clearCache(fileName) {
+        const item = await this.getItem(fileName);
+        if (item) {
+            await t.rightClick(item);
+            await t.expect(this.menuContext.exists).ok('Menu context is not visible');
+            await t.click(this.clearCacheBtn);
+            await t.expect(this.dialog.exists).ok('Dialog is not visible');
+            await t.click(this.okBtn);
+        } else {
+            throw new Error(`File "${fileName}" not found`);
+        }
     }
 }
