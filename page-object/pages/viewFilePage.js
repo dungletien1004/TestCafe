@@ -3,6 +3,8 @@ import { Selector, t } from 'testcafe';
 export default class ViewFilePage {
   constructor() {
     this.fileName = Selector('.custom-center-top-button .content-top-button');
+    this.viewFileLoading = Selector('.background-loading');
+
   }
 
   async getFileName() {
