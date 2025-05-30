@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "test:http": "testcafe \"chrome --incognito --disable-http2 --disable-features=StrictOriginIsolation\" ./tests",
+    "test:chrome:local": "testcafe chrome ./tests -s takeOnFails=true",
     "test:chrome": "testcafe chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome:2": "testcafe -c 2 chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome:5": "testcafe -c 5 chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",

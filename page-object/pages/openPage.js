@@ -14,7 +14,7 @@ export default class openPage {
         // "View" button is in <mat-card-footer> inside selected area
         this.viewButton = this.selectedListContainer.find('mat-card-footer button').withText('View');
         this.menuContext = Selector('.mat-menu-content');
-        this.clearCacheBtn = this.menuContext.find('button').withText('Clear cache');
+        this.menuContextUpdate = Selector('.mat-mdc-menu-content');
 
         this.dialog = Selector('.left-div');
         this.okBtn = this.dialog.find('button').withText('OK');
@@ -62,8 +62,16 @@ export default class openPage {
     }
 
     async getStatus() {
-        const isVisible = await this.statusText.exists;
-        return isVisible ? (await this.statusText.innerText).trim() : null;
+        const element = this.statusText;
+        const exists = await element.exists;
+        const visible = await element.visible;
+    
+        if (exists && visible) {
+            const text = await element.innerText;
+            return text.trim();
+        }
+    
+        return null;
     }
 
     // async waitForUrlToChange(expectedPart, timeout = 100000) {
@@ -78,18 +86,16 @@ export default class openPage {
     
         while ((Date.now() - start) < timeout) {
             const currentUrl = await getLocation();
+            // If URL contains the expected part → pass
+            if (currentUrl.includes(expectedPart)) {
+                return;
+            }
             const status = await this.getStatus();
     
             // If found error, fail immediately
             if (status === 'Error') {
                 throw new Error(`❌ Caching error`);
             }
-    
-            // If URL contains the expected part → pass
-            if (currentUrl.includes(expectedPart)) {
-                return;
-            }
-    
             await t.wait(500); // wait a moment then check again
         }
     
@@ -99,14 +105,34 @@ export default class openPage {
 
     async clearCache(fileName) {
         const item = await this.getItem(fileName);
-        if (item) {
-            await t.rightClick(item);
-            await t.expect(this.menuContext.exists).ok('Menu context is not visible');
-            await t.click(this.clearCacheBtn);
-            await t.expect(this.dialog.exists).ok('Dialog is not visible');
-            await t.click(this.okBtn);
-        } else {
+        if (!item) {
             throw new Error(`File "${fileName}" not found`);
+        }
+    
+        await t.rightClick(item);
+    
+        // Kiểm tra context menu nào tồn tại
+        let menuContext = this.menuContext;
+        if (!(await menuContext.exists)) {
+            menuContext = this.menuContextUpdate;
+        }
+        const clearCacheBtn = menuContext.find('button').withText('Clear cache');
+        await t.expect(menuContext.exists).ok('Menu context is not visible');
+        await t.click(clearCacheBtn);
+        await t.expect(this.dialog.exists).ok('Dialog is not visible');
+        await t.click(this.okBtn);
+    }
+
+    async waitForLoadingToFinish(timeout = 20000) {
+        const searchBox = this.search;
+        const hasSearchBox = await searchBox.exists;
+        // Step 1: Wait for loading to appear only if search box is not present
+        if (!hasSearchBox) {
+            await t.expect(this.backgroundLoading.exists).ok({ timeout: 20000 });
+        }
+        // Step 2: Wait for loading to disappear
+        if (this.backgroundLoading.exists) {
+            await t.expect(this.backgroundLoading.exists).notOk({ timeout: 20000 });
         }
     }
 }
