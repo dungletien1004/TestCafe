@@ -8,13 +8,13 @@ const viewFilePage = new ViewFilePage();
 
 const fileNames = readFileNameFromJsonFile('test-data/fileNames.json');
 prepareReportFolderOnce();
+const fileExcelName = 'openFile-hoops';
 
 fixture `Open file localhost`
     .page`http://localhost:4200/autoTest`;
 
 fileNames.forEach((item) => {
-  test(`${item.expect ? 'Should open' : 'Should not find'} file: ${item.fileName}`, async t => {
-    const startTime = Date.now();
+  test(`${item.expectFileFound ? 'Should open' : 'Should not find'} file: ${item.fileName}`, async t => {
     const phaseTimes = {};
     const fileName = item.fileName;
     console.log(`Start test for file: ${fileName}`);
@@ -22,14 +22,12 @@ fileNames.forEach((item) => {
       // Phase 1.1
       let phaseStart = Date.now();
       await openFilePage.waitForLoadingToFinish();
-      phaseTimes['Wait for loading'] = Date.now() - phaseStart;
       // Phase 1.2 Search for file and click on it
-      phaseStart = Date.now();
       await openFilePage.searchForFile(fileName);
       await t.wait(1000);
       const fileItem = await openFilePage.getItem(fileName);
-
-      if (!item.expect) {
+      logValueToExcel(fileName, 'Expected file found', item.expectFileFound, fileExcelName);
+      if (!item.expectFileFound) {
         if (fileItem) {
           await t.expect(fileItem.exists).notOk(`File "${fileName}" was found but should NOT exist in search results`);
         }
@@ -39,14 +37,14 @@ fileNames.forEach((item) => {
       await t.expect(fileItem.exists).ok(`Expected file "${fileName}" to be found, but it was not.`);
       const fileSize = await openFilePage.getFileSize(fileName);
       console.log(`File size: ${fileSize}`);
-      logValueToExcel(fileName, 'File size', fileSize, 'localhost');
+      logValueToExcel(fileName, 'File size', fileSize, fileExcelName);
       await openFilePage.clickItem(fileName);
       await openFilePage.clearCache(fileName);
       await t.wait(200);
 
       const selectedFile = openFilePage.getSelectedFileByName(fileName);
       await t.expect(selectedFile.exists).ok(`File "${fileName}" is not selected or not displayed in selected list`);
-      phaseTimes['Open & clear cache'] = Date.now() - phaseStart - 1200;
+      phaseTimes['loading and click view'] = Date.now() - phaseStart - 1200;
 
       // Phase 2
       phaseStart = Date.now();
@@ -54,38 +52,30 @@ fileNames.forEach((item) => {
       await openFilePage.waitForUrlToChange('/main?AUTHCODE', 360000); // 6 minutes
       const currentUrl = await getLocation();
       await t.expect(currentUrl).contains('/main?AUTHCODE', 'URL is not correct after click View');
-      phaseTimes['Wait for Open file (Caching)'] = Date.now() - phaseStart;
-
-      // Phase 3
-      phaseStart = Date.now();
+      const timeLoad = Date.now();
       await viewFilePage.waitForLoadingToFinish();
       await t.wait(200);
       const fileNameInView = await viewFilePage.getFileName();
       await t.expect(fileNameInView).contains(fileName, `File name is not correct in View Page`);
-      phaseTimes['Check file in View Page'] = Date.now() - phaseStart - 200;
+      logValueToExcel(fileName, 'Loading default sheet', (Date.now() - timeLoad - 200) / 1000, fileExcelName);
+      phaseTimes['Caching'] = Date.now() - phaseStart - 200;
 
       if (item.isHoop) {
         await viewFilePage.clickContentPanelButton();
-        await t.wait(200);
-        await viewFilePage.clickViewButton();
-        await t.wait(200);
+        await viewFilePage.checkSheetItemNames(item.sheetNames);
+        await Promise.all(item.sheetNames.map(async (sheetName) => {
+          await viewFilePage.clickSheetItem(sheetName, fileName, fileExcelName);
+          await t.wait(200);
+        }));
       }
     } catch (error) {
       console.error(`❌ Test failed for "${fileName}":`, error);
-
-      // Danh sách tất cả phase cố định
+      const errorMessage = error.message || error.errMsg;
+      logValueToExcel(fileName, 'Test Error', errorMessage, fileExcelName);
       const allPhases = [
-        'File size',  
-        'Wait for loading',
-        'Open & clear cache',
-        'Wait for Open file (Caching)',
-        'Check file in View Page',
-        'Search for the file and click View V2',
-        'Wait for Open file (Caching) V2',
-        'Check file in View Page V2'
+        'loading and click view',
+        'Caching'
       ];
-
-      // Gán "FAIL" cho các phase chưa có
       for (const phase of allPhases) {
         if (!(phase in phaseTimes)) {
           phaseTimes[phase] = 'null';
@@ -93,11 +83,7 @@ fileNames.forEach((item) => {
       }
       throw error;
     } finally {
-      const totalTime = Date.now() - startTime - 2800;
-      if (!('Total' in phaseTimes)) {
-        phaseTimes['Total'] = typeof totalTime === 'number' ? totalTime : 'FAIL';
-      }
-      logTimeToExcel(fileName, phaseTimes, 'localhost');
+      logTimeToExcel(fileName, phaseTimes, fileExcelName);
     }
   });
 });

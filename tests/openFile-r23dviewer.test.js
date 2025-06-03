@@ -13,7 +13,7 @@ fixture `Open file R2.3dviewer or localhost`
     .page`http://r2.3dviewer.anybim.vn/autoTest`;
 
 fileNames.forEach((item) => {
-  test.skip(`${item.expect ? 'Should open' : 'Should not find'} file: ${item.fileName}`, async t => {
+  test.skip(`${item.expectFileFound ? 'Should open' : 'Should not find'} file: ${item.fileName}`, async t => {
     const startTime = Date.now();
     const phaseTimes = {};
     const fileName = item.fileName;
@@ -29,7 +29,7 @@ fileNames.forEach((item) => {
       await t.wait(1000);
       const fileItem = await openFilePage.getItem(fileName);
 
-      if (!item.expect) {
+      if (!item.expectFileFound) {
         if (fileItem) {
           await t.expect(fileItem.exists).notOk(`File "${fileName}" was found but should NOT exist in search results`);
         }

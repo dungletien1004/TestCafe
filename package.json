@@ -7,6 +7,7 @@
     "test:http": "testcafe \"chrome --incognito --disable-http2 --disable-features=StrictOriginIsolation\" ./tests",
     "test:chrome:local": "testcafe chrome ./tests/openFile.test.js -s takeOnFails=true",
     "test:chrome": "testcafe chrome ./tests/openFile-r23dviewer.test.js --disable-proxy --disable-native-automation -s takeOnFails=true",
+    "test:chrome:hoops": "testcafe chrome ./tests/openFile-hoops.test.js -s takeOnFails=true",
     "test:chrome:all": "run-s test:chrome:local test:chrome",
     "test:chrome:all:parallel": "run-p test:chrome:local test:chrome",
     "test:chrome:2": "testcafe -c 2 chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
