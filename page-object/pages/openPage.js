@@ -61,11 +61,14 @@ export default class openPage {
         await t.click(this.viewButton);
     }
 
-    async getStatus() {
+    async getStatus(expectedPart = '') {
         const element = this.statusText;
         const exists = await element.exists;
         const visible = await element.visible;
-    
+        const currentUrl = await getLocation();
+        if (currentUrl.includes(expectedPart)) {
+            return null;
+        }
         if (exists && visible) {
             const text = await element.innerText;
             return text.trim();
@@ -90,7 +93,7 @@ export default class openPage {
             if (currentUrl.includes(expectedPart)) {
                 return;
             }
-            const status = await this.getStatus();
+            const status = await this.getStatus(expectedPart);
     
             // If found error, fail immediately
             if (status === 'Error') {
@@ -134,5 +137,14 @@ export default class openPage {
         if (this.backgroundLoading.exists) {
             await t.expect(this.backgroundLoading.exists).notOk({ timeout: 20000 });
         }
+    }
+
+    async getFileSize(fileName) {
+        const item = await this.getItem(fileName);
+        if (!item) {
+            throw new Error(`File "${fileName}" not found`);
+        }
+        const size = await item.find('.right-size span').innerText;
+        return size.trim();
     }
 }

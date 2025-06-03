@@ -9,8 +9,8 @@ const viewFilePage = new ViewFilePage();
 const fileNames = readFileNameFromJsonFile('test-data/fileNames.json');
 prepareReportFolderOnce();
 
-fixture `Open file localhost`
-    .page`http://localhost:4200/autoTest`;
+fixture `Open file R2.3dviewer or localhost`
+    .page`http://r2.3dviewer.anybim.vn/autoTest`;
 
 fileNames.forEach((item) => {
   test.skip(`${item.expect ? 'Should open' : 'Should not find'} file: ${item.fileName}`, async t => {
@@ -39,7 +39,7 @@ fileNames.forEach((item) => {
       await t.expect(fileItem.exists).ok(`Expected file "${fileName}" to be found, but it was not.`);
       const fileSize = await openFilePage.getFileSize(fileName);
       console.log(`File size: ${fileSize}`);
-      logValueToExcel(fileName, 'File size', fileSize, 'localhost');
+      logValueToExcel(fileName, 'File size', fileSize, 'r2-3dviewer');
       await openFilePage.clickItem(fileName);
       await openFilePage.clearCache(fileName);
       await t.wait(200);
@@ -66,7 +66,7 @@ fileNames.forEach((item) => {
 
       // Phase 4 Reopen 
       phaseStart = Date.now();
-      await t.navigateTo('http://localhost:4200/autoTest');
+      await t.navigateTo('http://r2.3dviewer.anybim.vn/autoTest');
       await openFilePage.waitForLoadingToFinish();
       await openFilePage.searchForFile(fileName);
       await t.wait(1000);
@@ -94,7 +94,6 @@ fileNames.forEach((item) => {
 
       // Danh sách tất cả phase cố định
       const allPhases = [
-        'File size',  
         'Wait for loading',
         'Open & clear cache',
         'Wait for Open file (Caching)',
@@ -112,11 +111,11 @@ fileNames.forEach((item) => {
       }
       throw error;
     } finally {
-      const totalTime = Date.now() - startTime - 2800;
+      const totalTime = Date.now() - startTime;
       if (!('Total' in phaseTimes)) {
         phaseTimes['Total'] = typeof totalTime === 'number' ? totalTime : 'FAIL';
       }
-      logTimeToExcel(fileName, phaseTimes, 'localhost');
+      logTimeToExcel(fileName, phaseTimes, 'r2-3dviewer');
     }
   });
 });

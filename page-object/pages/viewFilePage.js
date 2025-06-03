@@ -4,33 +4,26 @@ export default class ViewFilePage {
   constructor() {
     this.fileName = Selector('.custom-center-top-button .content-top-button');
     this.viewFileLoading = Selector('.background-loading');
-
+    this.ContentPanelButton = Selector('section.container-menu app-button-custom').nth(2);
   }
 
   async getFileName() {
+    const hasFileName = await this.fileName.exists;
+
+    if (!hasFileName) {
+      return null;
+    }
     return await this.fileName.innerText;
   }
 
   async waitForLoadingToFinish(timeout = 20000) {
-    let appeared = await this.viewFileLoading.exists;
-
-    if (appeared) {
-        // if it has appeared → wait for it to disappear
-        await t.expect(this.viewFileLoading.exists).notOk({ timeout });
-    } else {
-        // if it has not appeared → wait for 500ms then check again
-        await t.wait(500);
-        appeared = await this.viewFileLoading.exists;
-
-        if (appeared) {
-            // after waiting, if it has appeared → wait for it to disappear
-            await t.expect(this.viewFileLoading.exists).notOk({ timeout });
-        } else {
-            // after waiting, if it has not appeared → ok
-            await t.expect(this.viewFileLoading.exists).notOk({ timeout });
-        }
+    const fileNameInView = await this.getFileName();
+    if (fileNameInView !== 'File name' && fileNameInView !== null) {
+      return;
     }
-}
+    await t.expect(this.viewFileLoading.exists).ok({ timeout });
+    await t.expect(this.viewFileLoading.exists).notOk({ timeout });
+  }
 
   async waitForRealFileName(timeout = 10000) {
     const start = Date.now();
@@ -46,6 +39,10 @@ export default class ViewFilePage {
     }
   
     return currentName;
+  }
+
+  async clickContentPanelButton() {
+    await t.click(this.ContentPanelButton);
   }
 
 }

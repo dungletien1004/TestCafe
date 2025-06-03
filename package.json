@@ -5,8 +5,10 @@
   "main": "index.js",
   "scripts": {
     "test:http": "testcafe \"chrome --incognito --disable-http2 --disable-features=StrictOriginIsolation\" ./tests",
-    "test:chrome:local": "testcafe chrome ./tests -s takeOnFails=true",
-    "test:chrome": "testcafe chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
+    "test:chrome:local": "testcafe chrome ./tests/openFile.test.js -s takeOnFails=true",
+    "test:chrome": "testcafe chrome ./tests/openFile-r23dviewer.test.js --disable-proxy --disable-native-automation -s takeOnFails=true",
+    "test:chrome:all": "run-s test:chrome:local test:chrome",
+    "test:chrome:all:parallel": "run-p test:chrome:local test:chrome",
     "test:chrome:2": "testcafe -c 2 chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome:5": "testcafe -c 5 chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome:headless": "testcafe -c 3 chrome:headless ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
@@ -28,6 +30,7 @@
     "xlsx": "^0.18.5"
   },
   "devDependencies": {
+    "npm-run-all": "^4.1.5",
     "testcafe-reporter-html": "^1.4.6"
   }
 }

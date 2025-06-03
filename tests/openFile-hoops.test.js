@@ -13,7 +13,7 @@ fixture `Open file localhost`
     .page`http://localhost:4200/autoTest`;
 
 fileNames.forEach((item) => {
-  test.skip(`${item.expect ? 'Should open' : 'Should not find'} file: ${item.fileName}`, async t => {
+  test(`${item.expect ? 'Should open' : 'Should not find'} file: ${item.fileName}`, async t => {
     const startTime = Date.now();
     const phaseTimes = {};
     const fileName = item.fileName;
@@ -64,31 +64,12 @@ fileNames.forEach((item) => {
       await t.expect(fileNameInView).contains(fileName, `File name is not correct in View Page`);
       phaseTimes['Check file in View Page'] = Date.now() - phaseStart - 200;
 
-      // Phase 4 Reopen 
-      phaseStart = Date.now();
-      await t.navigateTo('http://localhost:4200/autoTest');
-      await openFilePage.waitForLoadingToFinish();
-      await openFilePage.searchForFile(fileName);
-      await t.wait(1000);
-      await openFilePage.clickItem(fileName);
-      await t.wait(200);
-      const selectedFileV2 = openFilePage.getSelectedFileByName(fileName);
-      await t.expect(selectedFileV2.exists).ok(`File "${fileName}" is not selected or not displayed in selected list`);
-      await openFilePage.clickViewButton();
-      phaseTimes['Search for the file and click View V2'] = Date.now() - phaseStart - 1200;
-
-      phaseStart = Date.now();
-      await openFilePage.waitForUrlToChange('/main?AUTHCODE', 360000); // 6 minutes
-      const currentUrlV2 = await getLocation();
-      await t.expect(currentUrlV2).contains('/main?AUTHCODE', 'URL is not correct after click View');
-      phaseTimes['Wait for Open file (Caching) V2'] = Date.now() - phaseStart;
-
-      phaseStart = Date.now();
-      await viewFilePage.waitForLoadingToFinish();
-      await t.wait(200);
-      const fileNameInViewV2 = await viewFilePage.getFileName();
-      await t.expect(fileNameInViewV2).contains(fileName, `File name is not correct in View Page`);
-      phaseTimes['Check file in View Page V2'] = Date.now() - phaseStart;
+      if (item.isHoop) {
+        await viewFilePage.clickContentPanelButton();
+        await t.wait(200);
+        await viewFilePage.clickViewButton();
+        await t.wait(200);
+      }
     } catch (error) {
       console.error(`❌ Test failed for "${fileName}":`, error);
 

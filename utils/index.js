@@ -117,6 +117,37 @@ export function logTimeToExcel(fileName, phaseTimes, excelName) {
     xlsx.utils.book_append_sheet(workbook, newSheet, 'TestTime');
     xlsx.writeFile(workbook, logExcelPath);
 }
+
+export function logValueToExcel(fileName, title, value, excelName) {
+    const logExcelPath = getExcelLogPath(excelName); // ✅ giống hàm logTimeToExcel
+
+    let workbook;
+    let sheet;
+    let data = [];
+
+    if (fs.existsSync(logExcelPath)) {
+        workbook = xlsx.readFile(logExcelPath);
+        sheet = workbook.Sheets[workbook.SheetNames[0]];
+        data = xlsx.utils.sheet_to_json(sheet);
+    } else {
+        workbook = xlsx.utils.book_new();
+    }
+
+    // ✅ Tìm dòng chứa đúng fileName
+    let row = data.find(d => d.fileName === fileName);
+    if (!row) {
+        row = { fileName };
+        data.push(row);
+    }
+
+    // ✅ Gán giá trị mới
+    row[title] = value;
+
+    const newSheet = xlsx.utils.json_to_sheet(data);
+    workbook.SheetNames.length = 0;
+    xlsx.utils.book_append_sheet(workbook, newSheet, 'TestTime');
+    xlsx.writeFile(workbook, logExcelPath);
+}
 /**
  * read and parse json file contains fileName and expect
  * @param {string} jsonFilePath - path to json file
