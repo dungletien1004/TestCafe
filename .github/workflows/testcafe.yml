@@ -21,9 +21,6 @@ jobs:
 
     - name: 📦 Install dependencies
       run: npm install
-      
-    - name: 🛠️ Map dev-test to localhost
-      run: echo "127.0.0.1 dev-test" | sudo tee -a /etc/hosts
 
     - name: 🧪 Run TestCafe tests (headless Chrome)
       run: npm run test:chrome:headless
