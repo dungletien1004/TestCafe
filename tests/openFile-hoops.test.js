@@ -12,7 +12,8 @@ const fileExcelName = 'openFile-hoops';
 
 fixture `Open file Hoops`
     // .page`http://localhost:4200/autoTest`;
-    .page`http://r2.3dviewer.anybim.vn/autoTest`;
+    // .page`http://r2.3dviewer.anybim.vn/autoTest`;
+    .page`http://dev-test:4200/autoTest`;
 
 fileNames.forEach((item) => {
   test(`${item.expectFileFound ? 'Should open' : 'Should not find'} file: ${item.fileName}`, async t => {

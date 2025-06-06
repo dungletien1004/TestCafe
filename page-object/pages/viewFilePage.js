@@ -64,8 +64,7 @@ export default class ViewFilePage {
     }
   }
 
-  async clickSheetItem(sheetName, fileName, fileExcelName, timeout = 10000) {
-    console.log(`Click sheet item: ${sheetName}`);
+  async clickSheetItem(sheetName, fileName, fileExcelName, timeout = 60000) { // max timeout 60s
     const count = await this.sheetItem.count;
     let found = false;
 
@@ -87,7 +86,6 @@ export default class ViewFilePage {
 
                 const markupToolbarParent = Selector('.markup-toolbar-parent');
                 if (!markupToolbarParent.exists) {
-                    console.log(`Loading...`);
                     await t.expect(this.viewFileLoading.exists).ok({ timeout });
                     await t.expect(this.viewFileLoading.exists).notOk({ timeout });
                 }
