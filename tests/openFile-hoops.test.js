@@ -10,8 +10,9 @@ const fileNames = readFileNameFromJsonFile('test-data/fileNames.json');
 prepareReportFolderOnce();
 const fileExcelName = 'openFile-hoops';
 
-fixture `Open file localhost`
-    .page`http://localhost:4200/autoTest`;
+fixture `Open file Hoops`
+    // .page`http://localhost:4200/autoTest`;
+    .page`http://r2.3dviewer.anybim.vn/autoTest`;
 
 fileNames.forEach((item) => {
   test(`${item.expectFileFound ? 'Should open' : 'Should not find'} file: ${item.fileName}`, async t => {
@@ -25,7 +26,7 @@ fileNames.forEach((item) => {
       // Phase 1.2 Search for file and click on it
       await openFilePage.searchForFile(fileName);
       await t.wait(1000);
-      const fileItem = await openFilePage.getItem(fileName);
+      const fileItem = await openFilePage.getItem(fileName, item.path);
       logValueToExcel(fileName, 'Expected file found', item.expectFileFound, fileExcelName);
       if (!item.expectFileFound) {
         if (fileItem) {
@@ -35,11 +36,11 @@ fileNames.forEach((item) => {
       }
 
       await t.expect(fileItem.exists).ok(`Expected file "${fileName}" to be found, but it was not.`);
-      const fileSize = await openFilePage.getFileSize(fileName);
+      const fileSize = await openFilePage.getFileSize(fileName, item.path);
       console.log(`File size: ${fileSize}`);
       logValueToExcel(fileName, 'File size', fileSize, fileExcelName);
-      await openFilePage.clickItem(fileName);
-      await openFilePage.clearCache(fileName);
+      await openFilePage.clickItem(fileName, item.path);
+      await openFilePage.clearCache(fileName, item.path);
       await t.wait(200);
 
       const selectedFile = openFilePage.getSelectedFileByName(fileName);
@@ -63,10 +64,9 @@ fileNames.forEach((item) => {
       if (item.isHoop) {
         await viewFilePage.clickContentPanelButton();
         await viewFilePage.checkSheetItemNames(item.sheetNames);
-        await Promise.all(item.sheetNames.map(async (sheetName) => {
+        for (const sheetName of item.sheetNames) {
           await viewFilePage.clickSheetItem(sheetName, fileName, fileExcelName);
-          await t.wait(200);
-        }));
+        }
       }
     } catch (error) {
       console.error(`❌ Test failed for "${fileName}":`, error);

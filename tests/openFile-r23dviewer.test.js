@@ -27,7 +27,7 @@ fileNames.forEach((item) => {
       phaseStart = Date.now();
       await openFilePage.searchForFile(fileName);
       await t.wait(1000);
-      const fileItem = await openFilePage.getItem(fileName);
+      const fileItem = await openFilePage.getItem(fileName, item.path);
 
       if (!item.expectFileFound) {
         if (fileItem) {
@@ -37,11 +37,11 @@ fileNames.forEach((item) => {
       }
 
       await t.expect(fileItem.exists).ok(`Expected file "${fileName}" to be found, but it was not.`);
-      const fileSize = await openFilePage.getFileSize(fileName);
+      const fileSize = await openFilePage.getFileSize(fileName, item.path);
       console.log(`File size: ${fileSize}`);
       logValueToExcel(fileName, 'File size', fileSize, 'r2-3dviewer');
-      await openFilePage.clickItem(fileName);
-      await openFilePage.clearCache(fileName);
+      await openFilePage.clickItem(fileName, item.path);
+      await openFilePage.clearCache(fileName, item.path);
       await t.wait(200);
 
       const selectedFile = openFilePage.getSelectedFileByName(fileName);
@@ -70,7 +70,7 @@ fileNames.forEach((item) => {
       await openFilePage.waitForLoadingToFinish();
       await openFilePage.searchForFile(fileName);
       await t.wait(1000);
-      await openFilePage.clickItem(fileName);
+      await openFilePage.clickItem(fileName, item.path);
       await t.wait(200);
       const selectedFileV2 = openFilePage.getSelectedFileByName(fileName);
       await t.expect(selectedFileV2.exists).ok(`File "${fileName}" is not selected or not displayed in selected list`);

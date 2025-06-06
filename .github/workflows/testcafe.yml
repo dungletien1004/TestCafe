@@ -31,3 +31,9 @@ jobs:
       with:
         name: testcafe-screenshots
         path: screenshots
+    - name: 📥 Upload Excel report
+      if: always()
+      uses: actions/upload-artifact@v3
+      with:
+        name: excel-report
+        path: report

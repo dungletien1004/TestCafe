@@ -28,22 +28,40 @@ export default class openPage {
         return this.search.value;
     }
 
-    async getItem(fileName) {
+    async getItem(fileName, path) {
         const itemCount = await this.item.count;
+        let hasFoundFileName = false;
+    
         for (let i = 0; i < itemCount; i++) {
             const item = this.item.nth(i);
             const text = await item.find('.filename').innerText;
+            const pathText = await item.find('.path').innerText;
+    
             if (text.trim() === fileName.trim()) {
-                return item;
+                hasFoundFileName = true;
+    
+                // If path is not provided, return the first item matching fileName
+                if (!path) {
+                    return item;
+                }
+    
+                if (pathText.trim() === path.trim()) {
+                    return item;
+                }
             }
         }
+    
+        if (hasFoundFileName) {
+            throw new Error(`File "${fileName}" found but path: "${path}" is not correct`);
+        }
+    
         return null;
     }
 
     
 
-    async clickItem(fileName) {
-        const item = await this.getItem(fileName);
+    async clickItem(fileName, path) {
+        const item = await this.getItem(fileName, path);
         if (item) {
             await t.click(item);
         } else {
@@ -106,8 +124,8 @@ export default class openPage {
         throw new Error(`⏰ Timeout ${timeout}ms but URL not contains "${expectedPart}"`);
     }
 
-    async clearCache(fileName) {
-        const item = await this.getItem(fileName);
+    async clearCache(fileName, path) {
+        const item = await this.getItem(fileName, path);
         if (!item) {
             throw new Error(`File "${fileName}" not found`);
         }
@@ -139,8 +157,8 @@ export default class openPage {
         }
     }
 
-    async getFileSize(fileName) {
-        const item = await this.getItem(fileName);
+    async getFileSize(fileName, path) {
+        const item = await this.getItem(fileName, path);
         if (!item) {
             throw new Error(`File "${fileName}" not found`);
         }
