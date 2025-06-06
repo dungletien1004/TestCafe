@@ -33,7 +33,7 @@ jobs:
         path: screenshots
     - name: 📥 Upload Excel report
       if: always()
-      uses: actions/upload-artifact@v3
+      uses: actions/upload-artifact@master
       with:
         name: excel-report
         path: report
