@@ -202,6 +202,7 @@ export default class openPage {
                 console.log(`click folder ${path}`)
                 await t.click(folder);
                 currentPath += `/${path}`;
+                await t.wait(1000);
             } else {
                 throw new Error(`Path: ${folderPath} not found`);
             }
