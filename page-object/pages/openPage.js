@@ -215,6 +215,8 @@ export default class openPage {
             const fullPath = await this.getFullPath()
             if (pathTest !== fullPath) {
                 console.log('error: pathTest !== fullPath', pathTest !== fullPath)
+                console.log('error: pathTest', pathTest)
+                console.log('error: fullPath', fullPath)
             }
             
             for (let i = 0; i < itemCount; i++) {
