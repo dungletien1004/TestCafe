@@ -76,6 +76,7 @@ export default class openPage {
                 console.log(`❌ Folder "${folderName}" is not found`);
             }
             if (text.trim() === folderName.trim()) {
+                console.log(`✅ Find folder ${folderName}`);
                 return item;
             }
         }
@@ -198,6 +199,7 @@ export default class openPage {
             const folder = await this.getFolder(path);
             
             if (folder) {
+                console.log(`click folder ${path}`)
                 await t.click(folder);
                 currentPath += `/${path}`;
             } else {
