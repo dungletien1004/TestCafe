@@ -20,7 +20,7 @@ export default class ViewFilePage {
   }
 
   async waitForLoadingToFinish(timeout = 60000) {
-    await t.expect(this.markupToolbarParent.exists).ok({ timeout });
+    await t.expect(this.markupToolbarParent.exists).ok(`❌ markupToolbarParent not found after timeout (${timeout}ms)`, { timeout });
   }
 
   async waitForRealFileName(timeout = 10000) {

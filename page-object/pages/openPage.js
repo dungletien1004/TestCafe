@@ -132,7 +132,10 @@ export default class openPage {
             if (currentUrl.includes(expectedPart)) {
                 return;
             }
-            const status = await fileItem.find('.main-content-cache span').innerText;
+            let status;
+            try{
+                status = await fileItem.find('.main-content-cache span').innerText;
+            } catch(e) {}
             // If found error, fail immediately
             if (status === 'Error') {
                 throw new Error(`❌ Caching error`);
