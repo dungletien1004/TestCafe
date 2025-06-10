@@ -1,16 +1,17 @@
-import { openPage, ViewFilePage } from '../page-object/pages';
 import { ClientFunction } from 'testcafe';
-import { readFileNameFromJsonFile, logTimeToExcel, prepareReportFolderOnce, logValueToExcel } from '../utils';
+import { readFileNameFromJsonFile, logTimeToExcel, prepareReportFolderOnce, logValueToExcel } from '../../utils';
+import openPage from '../../page-object/pages/openPage';
+import ViewFilePage from '../../page-object/pages/viewFilePage';
 
 const getLocation = ClientFunction(() => window.location.href);
 const openFilePage = new openPage();
 const viewFilePage = new ViewFilePage();
 
-const fileNames = readFileNameFromJsonFile('test-data/fileNames.json');
+const fileNames = readFileNameFromJsonFile('test-data/data-file/data-file.json');
 prepareReportFolderOnce();
-const fileExcelName = 'openFile-hoops';
+const fileExcelName = 'runTestWithDataGen';
 
-fixture `Open file Hoops`
+fixture `Run test with data generated from folder path`
     // .page`http://localhost:4200/autoTest`;
     .page`http://r2.3dviewer.anybim.vn/autoTest`;
     // .page`http://dev-test:4200/autoTest`;
@@ -37,11 +38,11 @@ fileNames.forEach((item) => {
       }
 
       await t.expect(fileItem.exists).ok(`Expected file "${fileName}" to be found, but it was not.`);
-      const fileSize = await openFilePage.getFileSize(fileName, item.path);
+      const fileSize = await openFilePage.getFileSize(fileItem);
       console.log(`File size: ${fileSize}`);
       logValueToExcel(fileName, 'File size', fileSize, fileExcelName);
-      await openFilePage.clickItem(fileName, item.path);
-      await openFilePage.clearCache(fileName, item.path);
+      await openFilePage.clickItem(fileItem);
+      await openFilePage.clearCache(fileItem);
       await t.wait(200);
 
       const selectedFile = openFilePage.getSelectedFileByName(fileName);
@@ -51,7 +52,7 @@ fileNames.forEach((item) => {
       // Phase 2
       phaseStart = Date.now();
       await openFilePage.clickViewButton();
-      await openFilePage.waitForUrlToChange('/main?AUTHCODE', 360000); // 6 minutes
+      await openFilePage.waitForUrlToChange('/main?AUTHCODE', fileItem, 360000); // 6 minutes
       const currentUrl = await getLocation();
       await t.expect(currentUrl).contains('/main?AUTHCODE', 'URL is not correct after click View');
       const timeLoad = Date.now();

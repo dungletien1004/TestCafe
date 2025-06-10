@@ -98,7 +98,9 @@ export default class ViewFilePage {
     }
 
     if (!found) {
-        throw new Error(`❌ Sheet "${sheetName}" is NOT found in the actual list: [${actualNames.join(', ')}]`);
+      logValueToExcel(fileName, 'Error', `❌ Sheet "${sheetName}" is NOT found in the actual list: [${actualNames.join(', ')}]`, fileExcelName)
+      console.log(`❌ Sheet "${sheetName}" is NOT found in the actual list: [${actualNames.join(', ')}]`);
+      
     }
 }
 

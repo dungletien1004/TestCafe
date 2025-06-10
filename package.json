@@ -5,12 +5,25 @@
   "main": "index.js",
   "scripts": {
     "test:http": "testcafe \"chrome --incognito --disable-http2 --disable-features=StrictOriginIsolation\" ./tests",
+    "test:chrome:gendata:local": "testcafe chrome ./tests/genDataWithFolderPath/genDataWithFolderPath.test.js -s takeOnFails=true",
+    "test:chrome:gendata:http": "testcafe chrome ./tests/genDataWithFolderPath/genDataWithFolderPath.test.js --disable-proxy --disable-native-automation -s takeOnFails=true",
+    "test:chrome:runDataGen:local": "testcafe chrome ./tests/runTestWithDataGen/runTestWithDataGen.test.js -s takeOnFails=true",
+    "test:chrome:runDataGen:http": "testcafe chrome ./tests/runTestWithDataGen/runTestWithDataGen.test.js --disable-proxy --disable-native-automation -s takeOnFails=true",
+    "test:chrome:testFolder:all": "run-s test:chrome:gendata:local test:chrome:runDataGen:local",
+    "test:chrome:testFolder:all:http": "run-s test:chrome:gendata:http test:chrome:runDataGen:http",
+
+    "test:chrome:gendata:headless:local": "testcafe chrome:headless ./tests/genDataWithFolderPath/genDataWithFolderPath.test.js -s takeOnFails=true",
+    "test:chrome:gendata:headless:http": "testcafe chrome:headless ./tests/genDataWithFolderPath/genDataWithFolderPath.test.js --disable-proxy --disable-native-automation -s takeOnFails=true",
+    "test:chrome:runDataGen:headless:local": "testcafe chrome:headless ./tests/runTestWithDataGen/runTestWithDataGen.test.js -s takeOnFails=true",
+    "test:chrome:runDataGen:headless:http": "testcafe chrome:headless ./tests/runTestWithDataGen/runTestWithDataGen.test.js --disable-proxy --disable-native-automation -s takeOnFails=true",
+    "test:chrome:testFolder:headless:all": "run-s test:chrome:gendata:headless:local test:chrome:runDataGen:headless:local",
+    "test:chrome:testFolder:headless:all:http": "run-s test:chrome:gendata:headless:http test:chrome:runDataGen:headless:http",
+
     "test:chrome:local": "testcafe chrome ./tests/openFile.test.js -s takeOnFails=true",
     "test:chrome:r23dviewer": "testcafe chrome ./tests/openFile-r23dviewer.test.js --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome": "testcafe chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome:hoops": "testcafe chrome ./tests/openFile-hoops.test.js -s takeOnFails=true",
-    "test:chrome:all": "run-s test:chrome:local test:chrome",
-    "test:chrome:all:parallel": "run-p test:chrome:local test:chrome",
+
     "test:chrome:2": "testcafe -c 2 chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome:5": "testcafe -c 5 chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome:headless": "testcafe chrome:headless ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",

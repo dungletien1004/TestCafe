@@ -1,0 +1,102 @@
+[
+  {
+    "fileName": "3D BLOCK.dgn",
+    "path": "./AutoTest",
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ],
+    "expectFileFound": true
+  },
+  {
+    "fileName": "ACAD Font Text File 2010.dwg",
+    "path": "./AutoTest",
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ],
+    "expectFileFound": true
+  },
+  {
+    "fileName": "ACAD Font Text File 2013.dwg",
+    "path": "./AutoTest",
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ],
+    "expectFileFound": true
+  },
+  {
+    "fileName": "ACAD Font Text File 2018.dwg",
+    "path": "./AutoTest",
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ],
+    "expectFileFound": true
+  },
+  {
+    "fileName": "ACAD2004.dwg",
+    "path": "./AutoTest",
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ],
+    "expectFileFound": true
+  },
+  {
+    "fileName": "Forklift-Mitsubishi-FGC30N.dwg",
+    "path": "./AutoTest",
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ],
+    "expectFileFound": true
+  },
+  {
+    "fileName": "HOME.dwg",
+    "path": "./AutoTest",
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ],
+    "expectFileFound": true
+  },
+  {
+    "fileName": "v2000.dwg",
+    "path": "./AutoTest",
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ],
+    "expectFileFound": true
+  },
+  {
+    "fileName": "V8 MicroStation.dgn",
+    "path": "./AutoTest",
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ],
+    "expectFileFound": true
+  },
+  {
+    "fileName": "Wind Power Generator 3DView.dwg",
+    "path": "./AutoTest",
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ],
+    "expectFileFound": true
+  }
+]

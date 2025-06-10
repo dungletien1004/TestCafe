@@ -3,6 +3,36 @@ import fs from 'fs';
 import path from 'path';
 
 
+/**
+ * Reset (clear) a JSON file to an empty array.
+ * @param filePath - Đường dẫn tới file JSON cần reset
+ */
+export function resetJsonFile(filePath) {
+    fs.writeFileSync(filePath, '[]', 'utf-8');
+  }
+export function logFileInfo(
+    outputPath,
+    entry
+  ) {
+    let data = [];
+  
+    // Đọc file nếu tồn tại
+    if (fs.existsSync(outputPath)) {
+      const raw = fs.readFileSync(outputPath, 'utf-8');
+      try {
+        data = JSON.parse(raw);
+      } catch (err) {
+        console.error('❌ JSON parse error:', err);
+      }
+    }
+  
+    // Thêm entry mới
+    data.push(entry);
+  
+    // Ghi lại toàn bộ file
+    fs.writeFileSync(outputPath, JSON.stringify(data, null, 2), 'utf-8');
+  }
+  
 export function prepareReportFolderOnce() {
     const now = new Date();
     const yyyy = now.getFullYear();
