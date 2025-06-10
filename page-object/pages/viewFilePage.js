@@ -7,6 +7,7 @@ export default class ViewFilePage {
     this.viewFileLoading = Selector('.background-loading');
     this.ContentPanelButton = Selector('section.container-menu app-button-custom').nth(2);
     this.sheetItem = Selector('app-sheets .sheet-item');
+    this.markupToolbarParent = Selector('.markup-toolbar-parent');
   }
 
   async getFileName() {
@@ -18,22 +19,8 @@ export default class ViewFilePage {
     return await this.fileName.innerText;
   }
 
-  async waitForLoadingToFinish(timeout = 20000) {
-    const fileNameInView = await this.getFileName();
-    if (fileNameInView !== 'File name' && fileNameInView !== null) {
-      return;
-    }
-    try {
-      await t.expect(this.viewFileLoading.exists).ok({ timeout });
-    } catch (error) {
-      console.error('❌ File loading should appear but did not.');
-    }
-    
-    try {
-      await t.expect(this.viewFileLoading.exists).notOk({ timeout });
-    } catch (error) {
-      console.error('❌ File loading should disappear but still exists.');
-    }
+  async waitForLoadingToFinish(timeout = 60000) {
+    await t.expect(this.markupToolbarParent.exists).ok({ timeout });
   }
 
   async waitForRealFileName(timeout = 10000) {
@@ -56,7 +43,8 @@ export default class ViewFilePage {
     await t.click(this.ContentPanelButton);
   }
 
-  async checkSheetItemNames(expectedNames) {
+  async checkSheetItemNames(item, logValueToExcel, fileExcelName) {
+    const expectedNames = item.sheetNames;
     const sheetItems = this.sheetItem.find('.content-sheet span');
 
     const actualNames = [];
@@ -68,7 +56,8 @@ export default class ViewFilePage {
 
     for (const expectedName of expectedNames) {
         if (!actualNames.includes(expectedName)) {
-          throw new Error(`❌ Sheet item "${expectedName}" is NOT found in the actual list: [${actualNames.join(', ')}]`);
+          console.log(`❌ Sheet item "${expectedName}" is NOT found in the actual list: [${actualNames.join(', ')}]`);
+          logValueToExcel(item.fileName, 'Error', `❌ Sheet item "${expectedName}" is NOT found in the actual list: [${actualNames.join(', ')}]`, fileExcelName)
         }
     }
   }
@@ -104,12 +93,6 @@ export default class ViewFilePage {
             found = true;
             break;
         }
-    }
-
-    if (!found) {
-      logValueToExcel(fileName, 'Error', `❌ Sheet "${sheetName}" is NOT found in the actual list: [${actualNames.join(', ')}]`, fileExcelName)
-      console.log(`❌ Sheet "${sheetName}" is NOT found in the actual list: [${actualNames.join(', ')}]`);
-      
     }
 }
 

@@ -65,7 +65,7 @@ fileNames.forEach((item) => {
 
       if (item.isHoop) {
         await viewFilePage.clickContentPanelButton();
-        await viewFilePage.checkSheetItemNames(item.sheetNames);
+        await viewFilePage.checkSheetItemNames(item, logValueToExcel, fileExcelName);
         for (const sheetName of item.sheetNames) {
           await viewFilePage.clickSheetItem(sheetName, fileName, fileExcelName);
         }
