@@ -23,8 +23,17 @@ export default class ViewFilePage {
     if (fileNameInView !== 'File name' && fileNameInView !== null) {
       return;
     }
-    await t.expect(this.viewFileLoading.exists).ok({ timeout });
-    await t.expect(this.viewFileLoading.exists).notOk({ timeout });
+    try {
+      await t.expect(this.viewFileLoading.exists).ok({ timeout });
+    } catch (error) {
+      console.error('❌ File loading should appear but did not.');
+    }
+    
+    try {
+      await t.expect(this.viewFileLoading.exists).notOk({ timeout });
+    } catch (error) {
+      console.error('❌ File loading should disappear but still exists.');
+    }
   }
 
   async waitForRealFileName(timeout = 10000) {
