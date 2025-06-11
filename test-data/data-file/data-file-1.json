@@ -1,0 +1,32 @@
+[
+  {
+    "fileName": "ACAD Font Text File 2010.dwg",
+    "path": "./Hoops/2d",
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ],
+    "expectFileFound": true
+  },
+  {
+    "fileName": "ACAD Font Text File 2013.dwg",
+    "path": "./Hoops/2d",
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ],
+    "expectFileFound": true
+  },
+  {
+    "fileName": "ACAD Font Text File 2018.dwg",
+    "path": "./Hoops/2d",
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ],
+    "expectFileFound": true
+  }
+]

@@ -10,36 +10,6 @@
     "expectFileFound": true
   },
   {
-    "fileName": "ACAD Font Text File 2010.dwg",
-    "path": "./AutoTest",
-    "isHoop": true,
-    "sheetNames": [
-      "2D Model",
-      "Model"
-    ],
-    "expectFileFound": true
-  },
-  {
-    "fileName": "ACAD Font Text File 2013.dwg",
-    "path": "./AutoTest",
-    "isHoop": true,
-    "sheetNames": [
-      "2D Model",
-      "Model"
-    ],
-    "expectFileFound": true
-  },
-  {
-    "fileName": "ACAD Font Text File 2018.dwg",
-    "path": "./AutoTest",
-    "isHoop": true,
-    "sheetNames": [
-      "2D Model",
-      "Model"
-    ],
-    "expectFileFound": true
-  },
-  {
     "fileName": "ACAD2004.dwg",
     "path": "./AutoTest",
     "isHoop": true,

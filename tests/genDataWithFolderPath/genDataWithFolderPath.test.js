@@ -4,8 +4,7 @@ import openPage from '../../page-object/pages/openPage';
 const openFilePage = new openPage();
 
 const folderPaths = readFileNameFromJsonFile('test-data/data-folder/data-folder.json');
-const fileLogPath = 'test-data/data-file/data-file.json';
-resetJsonFile(fileLogPath);
+const fileLogPath = 'test-data/data-file/';
 
 fixture `Gen data with folder path`
     // .page`http://localhost:4200/autoTest`
@@ -14,10 +13,13 @@ fixture `Gen data with folder path`
 
   folderPaths.forEach((item) => {
     test(`Gen data with folder path: ${item.folderPath}`, async t => {
+      const thread = item.thread || 1;
       const folderPath = item.folderPath;
+      const fileName = `${fileLogPath}data-file-${thread}.json`;
+      resetJsonFile(fileName);
         try {
           await openFilePage.waitForLoadingToFinish();
-          await openFilePage.genDataWithFolderPath(folderPath, logFileInfo, fileLogPath);
+          await openFilePage.genDataWithFolderPath(folderPath, logFileInfo, fileName);
         } catch (error) {
           const errorMessage = error.message || error.toString();
           console.error(`❌ Test failed for "${fileName}":`, errorMessage);

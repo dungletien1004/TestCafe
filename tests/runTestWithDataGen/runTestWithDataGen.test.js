@@ -7,9 +7,12 @@ const getLocation = ClientFunction(() => window.location.href);
 const openFilePage = new openPage();
 const viewFilePage = new ViewFilePage();
 
-const fileNames = readFileNameFromJsonFile('test-data/data-file/data-file.json');
+const threadIndex = process.env.THREAD_INDEX || '1'; // Lấy từ biến môi trường
+const filePath = `test-data/data-file/data-file-${threadIndex}.json`;
+const fileNames = readFileNameFromJsonFile(filePath);
+// const fileNames = readFileNameFromJsonFile('test-data/data-file/data-file.json');
 prepareReportFolderOnce();
-const fileExcelName = 'runTestWithDataGen';
+const fileExcelName = `runTestWithDataGen_thread${threadIndex}`;
 
 fixture `Run test with data generated from folder path`
     // .page`http://localhost:4200/autoTest`;
@@ -47,7 +50,6 @@ fileNames.forEach((item) => {
 
       const selectedFile = openFilePage.getSelectedFileByName(fileName);
       await t.expect(selectedFile.exists).ok(`File "${fileName}" is not selected or not displayed in selected list`);
-      phaseTimes['loading and click view'] = Date.now() - phaseStart - 1200;
 
       // Phase 2
       phaseStart = Date.now();
@@ -75,7 +77,6 @@ fileNames.forEach((item) => {
       const errorMessage = error.message || error.errMsg;
       logValueToExcel(fileName, 'Test Error', errorMessage, fileExcelName);
       const allPhases = [
-        'loading and click view',
         'Caching'
       ];
       for (const phase of allPhases) {

@@ -1,8 +1,8 @@
 [
     {
-        "folderPath": "./AutoTest", "sheetNames": ["2D Model", "Model"]
+        "folderPath": "./AutoTest", "thread": 3
     },
     {
-        "folderPath": "./Hoops/2d", "sheetNames": ["2D Model", "Model"]
+        "folderPath": "./Hoops/2d", "thread": 1
     }
 ]

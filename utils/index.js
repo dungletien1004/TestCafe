@@ -171,7 +171,7 @@ export function logValueToExcel(fileName, title, value, excelName) {
     }
 
     // ✅ Gán giá trị mới
-    row[title] = value;
+    row[title] = row[title] ? `${row[title]}\r\n${value}` : `${value}`;
     const newSheet = xlsx.utils.json_to_sheet(data);
     workbook.SheetNames.length = 0;
     xlsx.utils.book_append_sheet(workbook, newSheet, 'TestTime');
