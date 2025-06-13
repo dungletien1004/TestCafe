@@ -15,8 +15,8 @@ prepareReportFolderOnce();
 const fileExcelName = `runTestWithDataGen_thread${threadIndex}`;
 
 fixture `Run test with data generated from folder path`
-    // .page`http://localhost:4200/autoTest`;
-    .page`http://r2.3dviewer.anybim.vn/autoTest`;
+    .page`http://localhost:4200/autoTest`;
+    // .page`http://r2.3dviewer.anybim.vn/autoTest`;
     // .page`http://dev-test:4200/autoTest`;
 
 fileNames.forEach((item) => {
@@ -62,8 +62,8 @@ fileNames.forEach((item) => {
       await t.wait(200);
       const fileNameInView = await viewFilePage.getFileName();
       await t.expect(fileNameInView).contains(fileName, `File name is not correct in View Page`);
-      logValueToExcel(fileName, 'Loading default sheet', (Date.now() - timeLoad - 200) / 1000, fileExcelName);
-      phaseTimes['Caching'] = Date.now() - phaseStart - 200;
+      logValueToExcel(fileName, 'Loading default sheet (s)', (Date.now() - timeLoad - 200) / 1000, fileExcelName);
+      phaseTimes['Caching (s)'] = Date.now() - phaseStart - 200;
 
       if (item.isHoop) {
         await viewFilePage.clickContentPanelButton();
@@ -75,9 +75,9 @@ fileNames.forEach((item) => {
     } catch (error) {
       console.error(`❌ Test failed for "${fileName}":`, error);
       const errorMessage = error.message || error.errMsg;
-      logValueToExcel(fileName, 'Test Error', errorMessage, fileExcelName);
+      logValueToExcel(fileName, 'Error', errorMessage, fileExcelName);
       const allPhases = [
-        'Caching'
+        'Caching (s)'
       ];
       for (const phase of allPhases) {
         if (!(phase in phaseTimes)) {

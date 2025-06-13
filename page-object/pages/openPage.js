@@ -65,13 +65,10 @@ export default class openPage {
 
     async getFolder(folderName) {
         const itemCount = await this.item.count;
-    
         for (let i = 0; i < itemCount; i++) {
             const item = this.item.nth(i);
             const text = await item.find('.filename').innerText;
             const folderIcon = await this.leftContent.find('mat-icon').innerText;
-            console.log(`text: ${text}`);
-            console.log(`folderIcon: ${folderIcon}`);
             if (!folderIcon || folderIcon !== 'folder_open') {
                 console.log(`❌ Folder "${folderName}" is not found`);
             }
@@ -223,8 +220,9 @@ export default class openPage {
                 console.log('error: pathTest !== fullPath', pathTest !== fullPath)
                 console.log('error: pathTest', pathTest)
                 console.log('error: fullPath', fullPath)
+                return ;
             }
-            
+            let count = 0;
             for (let i = 0; i < itemCount; i++) {
                 const item = this.item.nth(i);
                 const text = await item.find('.filename').innerText;
@@ -236,6 +234,7 @@ export default class openPage {
                 let fileInfo = {
                     fileName: text,
                     path: folderPath,
+                    expectFileFound: true
                 }
                 if (extension === 'purged') {
                     continue;
@@ -243,11 +242,12 @@ export default class openPage {
                 if (extension === 'dwg' || extension === 'dgn') {
                     fileInfo.isHoop = true;
                     fileInfo.sheetNames = ['2D Model', 'Model'];
-                    fileInfo.expectFileFound = true;
                 }
                 console.log(`log data fileName: ${text}`);
+                count++;
                 logFileInfo(fileLogPath, fileInfo);
             }
+            console.log(`Input ${count} file from folder path ${folderPath}`);
         } catch (error) {
             console.log(`genDataWithFolderPath Error: ${error}`);
         }

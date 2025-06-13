@@ -1,72 +1,317 @@
 [
   {
-    "fileName": "3D BLOCK.dgn",
-    "path": "./AutoTest",
+    "fileName": "BSI200-G01-City Grid.dgn",
+    "path": "./SmallFile/dgn",
+    "expectFileFound": true,
     "isHoop": true,
     "sheetNames": [
       "2D Model",
       "Model"
-    ],
+    ]
+  },
+  {
+    "fileName": "0 PH-U0-PR5-2074.DWG",
+    "path": "./SmallFile/dwg",
     "expectFileFound": true
   },
   {
-    "fileName": "ACAD2004.dwg",
-    "path": "./AutoTest",
+    "fileName": "ren_TRANS-POLE.dgn",
+    "path": "./SmallFile/dgn",
+    "expectFileFound": true,
     "isHoop": true,
     "sheetNames": [
       "2D Model",
       "Model"
-    ],
+    ]
+  },
+  {
+    "fileName": "3D Cube Transparent 2.dwg",
+    "path": "./SmallFile/dwg",
+    "expectFileFound": true,
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ]
+  },
+  {
+    "fileName": "SAMPLE-V8.DGN",
+    "path": "./SmallFile/dgn",
     "expectFileFound": true
   },
   {
-    "fileName": "Forklift-Mitsubishi-FGC30N.dwg",
-    "path": "./AutoTest",
+    "fileName": "3D Cube Transparent.dwg",
+    "path": "./SmallFile/dwg",
+    "expectFileFound": true,
     "isHoop": true,
     "sheetNames": [
       "2D Model",
       "Model"
-    ],
+    ]
+  },
+  {
+    "fileName": "Text Extract Sample 1.DGN",
+    "path": "./SmallFile/dgn",
     "expectFileFound": true
   },
   {
-    "fileName": "HOME.dwg",
-    "path": "./AutoTest",
+    "fileName": "ACAD TrueType Font Text File.dwg",
+    "path": "./SmallFile/dwg",
+    "expectFileFound": true,
     "isHoop": true,
     "sheetNames": [
       "2D Model",
       "Model"
-    ],
+    ]
+  },
+  {
+    "fileName": "Text Extract Sample 2.DGN",
+    "path": "./SmallFile/dgn",
     "expectFileFound": true
   },
   {
-    "fileName": "v2000.dwg",
-    "path": "./AutoTest",
+    "fileName": "empty_model1.dwg",
+    "path": "./SmallFile/dwg",
+    "expectFileFound": true,
     "isHoop": true,
     "sheetNames": [
       "2D Model",
       "Model"
-    ],
+    ]
+  },
+  {
+    "fileName": "Text Extract Sample 3.DGN",
+    "path": "./SmallFile/dgn",
     "expectFileFound": true
   },
   {
-    "fileName": "V8 MicroStation.dgn",
-    "path": "./AutoTest",
+    "fileName": "empty_model2 (2).dwg",
+    "path": "./SmallFile/dwg",
+    "expectFileFound": true,
     "isHoop": true,
     "sheetNames": [
       "2D Model",
       "Model"
-    ],
+    ]
+  },
+  {
+    "fileName": "Text Extract Sample 4.DGN",
+    "path": "./SmallFile/dgn",
     "expectFileFound": true
   },
   {
-    "fileName": "Wind Power Generator 3DView.dwg",
-    "path": "./AutoTest",
+    "fileName": "empty_model2.dwg",
+    "path": "./SmallFile/dwg",
+    "expectFileFound": true,
     "isHoop": true,
     "sheetNames": [
       "2D Model",
       "Model"
-    ],
+    ]
+  },
+  {
+    "fileName": "HotelFloorplan.dwg",
+    "path": "./SmallFile/dwg",
+    "expectFileFound": true,
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ]
+  },
+  {
+    "fileName": "links-2019.dwg",
+    "path": "./SmallFile/dwg",
+    "expectFileFound": true,
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ]
+  },
+  {
+    "fileName": "Stapler.dwg",
+    "path": "./SmallFile/dwg",
+    "expectFileFound": true,
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ]
+  },
+  {
+    "fileName": "text1.dwg",
+    "path": "./SmallFile/dwg",
+    "expectFileFound": true,
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ]
+  },
+  {
+    "fileName": "05277-00.idw",
+    "path": "./SmallFile/idw",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "10026-1.idw",
+    "path": "./SmallFile/idw",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "2d-markup-Rectangle.idw",
+    "path": "./SmallFile/idw",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "line-styles.idw",
+    "path": "./SmallFile/idw",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "page-boundary-mc-close-to-boundaries.idw",
+    "path": "./SmallFile/idw",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "scissors.idw",
+    "path": "./SmallFile/idw",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "sheet-formats-borders.idw",
+    "path": "./SmallFile/idw",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "005 A1.pdf",
+    "path": "./SmallFile/pdf",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "10026-1.pdf",
+    "path": "./SmallFile/pdf",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "3D.pdf",
+    "path": "./SmallFile/pdf",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "formatting.pdf",
+    "path": "./SmallFile/pdf",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "spoon-surface-only.pdf",
+    "path": "./SmallFile/pdf",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "00635-00.SLDDRW",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "2021 SolidWorks 2.SLDPRT",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "2021 SolidWorks.SLDASM",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "2021 SolidWorks.SLDDRW",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "AA - Batery.SLDPRT",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "angle-constraint-check-2021.SLDDRW",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "asfdsf.SLDPRT",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "Assem1.SLDASM",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "cylinder body.SLDPRT",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "Hitch Tongue Cat 5 Art Ball.SLDASM",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "IR Sensor.SLDPRT",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "page-boundary-mc-close-to-boundaries.SLDDRW",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "sucker final support.SLDPRT",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "Sucker support.SLDPRT",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "Sucker support.SLDPRTsmall.SLDPRT",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "sucker.SLDPRT",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "Support cylinder.SLDPRT",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "support.SLDDRW",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "support.SLDPRT",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "View with no color.SLDDRW",
+    "path": "./SmallFile/SOLIDWORKS",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "Wheel.SLDPRT",
+    "path": "./SmallFile/SOLIDWORKS",
     "expectFileFound": true
   }
 ]

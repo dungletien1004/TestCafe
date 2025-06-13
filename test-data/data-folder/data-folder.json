@@ -1,8 +1,20 @@
 [
     {
-        "folderPath": "./AutoTest", "thread": 3
+        "folderPath": "./BigFile", "thread": 1
     },
     {
-        "folderPath": "./Hoops/2d", "thread": 1
+        "folderPath": "./SmallFile/dgn", "thread": 3
+    },
+    {
+        "folderPath": "./SmallFile/dwg", "thread": 3
+    },
+    {
+        "folderPath": "./SmallFile/idw", "thread": 3
+    },
+    {
+        "folderPath": "./SmallFile/pdf", "thread": 3
+    },
+    {
+        "folderPath": "./SmallFile/SOLIDWORKS", "thread": 3
     }
 ]

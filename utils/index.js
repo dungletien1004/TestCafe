@@ -10,6 +10,18 @@ import path from 'path';
 export function resetJsonFile(filePath) {
     fs.writeFileSync(filePath, '[]', 'utf-8');
   }
+export function resetAllJsonFilesInFolder(folderPath) {
+  const absolutePath = path.resolve(folderPath);
+  const files = fs.readdirSync(absolutePath);
+
+  files.forEach((file) => {
+    const filePath = path.join(absolutePath, file);
+    if (file.endsWith('.json') && fs.statSync(filePath).isFile()) {
+      fs.writeFileSync(filePath, '[]', 'utf-8');
+      console.log(`Reset file: ${filePath}`);
+    }
+  });
+}
 export function logFileInfo(
     outputPath,
     entry

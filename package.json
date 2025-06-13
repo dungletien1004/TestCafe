@@ -5,8 +5,8 @@
   "main": "index.js",
   "scripts": {
     "test:http": "testcafe \"chrome --incognito --disable-http2 --disable-features=StrictOriginIsolation\" ./tests",
-    "test:chrome:gendata:local": "testcafe chrome ./tests/genDataWithFolderPath/genDataWithFolderPath.test.js -s takeOnFails=true",
-    "test:chrome:gendata:http": "testcafe chrome ./tests/genDataWithFolderPath/genDataWithFolderPath.test.js --disable-proxy --disable-native-automation -s takeOnFails=true",
+    "test:chrome:gendata:local": "testcafe -c 3 chrome ./tests/genDataWithFolderPath/genDataWithFolderPath.test.js -s takeOnFails=true",
+    "test:chrome:gendata:http": "testcafe -c 3 chrome ./tests/genDataWithFolderPath/genDataWithFolderPath.test.js --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome:runDataGen:local": "testcafe chrome ./tests/runTestWithDataGen/runTestWithDataGen.test.js -s takeOnFails=true",
     "test:chrome:runDataGen:http": "testcafe chrome ./tests/runTestWithDataGen/runTestWithDataGen.test.js --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome:run-multi-thread": "node run-multi-thread.js",

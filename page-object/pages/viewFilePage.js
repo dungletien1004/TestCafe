@@ -87,7 +87,7 @@ export default class ViewFilePage {
                     await t.expect(this.viewFileLoading.exists).ok({ timeout });
                     await t.expect(this.viewFileLoading.exists).notOk({ timeout });
                 }
-                logValueToExcel(fileName, `Open sheet: ${sheetName}`, (Date.now() - timeClick) / 1000, fileExcelName );
+                logValueToExcel(fileName, `Open sheet: ${sheetName} (s)`, (Date.now() - timeClick) / 1000, fileExcelName );
             }
 
             found = true;
