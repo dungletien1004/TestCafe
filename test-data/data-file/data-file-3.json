@@ -10,23 +10,8 @@
     ]
   },
   {
-    "fileName": "0 PH-U0-PR5-2074.DWG",
-    "path": "./SmallFile/dwg",
-    "expectFileFound": true
-  },
-  {
     "fileName": "ren_TRANS-POLE.dgn",
     "path": "./SmallFile/dgn",
-    "expectFileFound": true,
-    "isHoop": true,
-    "sheetNames": [
-      "2D Model",
-      "Model"
-    ]
-  },
-  {
-    "fileName": "3D Cube Transparent 2.dwg",
-    "path": "./SmallFile/dwg",
     "expectFileFound": true,
     "isHoop": true,
     "sheetNames": [
@@ -40,7 +25,32 @@
     "expectFileFound": true
   },
   {
-    "fileName": "3D Cube Transparent.dwg",
+    "fileName": "Text Extract Sample 1.DGN",
+    "path": "./SmallFile/dgn",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "Text Extract Sample 2.DGN",
+    "path": "./SmallFile/dgn",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "Text Extract Sample 3.DGN",
+    "path": "./SmallFile/dgn",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "Text Extract Sample 4.DGN",
+    "path": "./SmallFile/dgn",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "0 PH-U0-PR5-2074.DWG",
+    "path": "./SmallFile/dwg",
+    "expectFileFound": true
+  },
+  {
+    "fileName": "3D Cube Transparent 2.dwg",
     "path": "./SmallFile/dwg",
     "expectFileFound": true,
     "isHoop": true,
@@ -50,9 +60,14 @@
     ]
   },
   {
-    "fileName": "Text Extract Sample 1.DGN",
-    "path": "./SmallFile/dgn",
-    "expectFileFound": true
+    "fileName": "3D Cube Transparent.dwg",
+    "path": "./SmallFile/dwg",
+    "expectFileFound": true,
+    "isHoop": true,
+    "sheetNames": [
+      "2D Model",
+      "Model"
+    ]
   },
   {
     "fileName": "ACAD TrueType Font Text File.dwg",
@@ -65,11 +80,6 @@
     ]
   },
   {
-    "fileName": "Text Extract Sample 2.DGN",
-    "path": "./SmallFile/dgn",
-    "expectFileFound": true
-  },
-  {
     "fileName": "empty_model1.dwg",
     "path": "./SmallFile/dwg",
     "expectFileFound": true,
@@ -80,11 +90,6 @@
     ]
   },
   {
-    "fileName": "Text Extract Sample 3.DGN",
-    "path": "./SmallFile/dgn",
-    "expectFileFound": true
-  },
-  {
     "fileName": "empty_model2 (2).dwg",
     "path": "./SmallFile/dwg",
     "expectFileFound": true,
@@ -93,11 +98,6 @@
       "2D Model",
       "Model"
     ]
-  },
-  {
-    "fileName": "Text Extract Sample 4.DGN",
-    "path": "./SmallFile/dgn",
-    "expectFileFound": true
   },
   {
     "fileName": "empty_model2.dwg",

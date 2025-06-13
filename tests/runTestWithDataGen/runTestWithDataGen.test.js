@@ -12,7 +12,7 @@ const filePath = `test-data/data-file/data-file-${threadIndex}.json`;
 const fileNames = readFileNameFromJsonFile(filePath);
 // const fileNames = readFileNameFromJsonFile('test-data/data-file/data-file.json');
 prepareReportFolderOnce();
-const fileExcelName = `runTestWithDataGen_thread${threadIndex}`;
+const fileExcelName = `runTestWithDataGen_thread${threadIndex}_Dev`;
 
 fixture `Run test with data generated from folder path`
     .page`http://localhost:4200/autoTest`;

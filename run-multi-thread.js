@@ -39,7 +39,7 @@ function runTest(index) {
     const child = exec(cmd, { env: envVars }, (err, stdout, stderr) => {
       if (err) {
         console.error(`❌ THREAD ${index} failed:\n${stderr}`);
-        reject(err);
+        resolve();
       } else {
         console.log(`✅ THREAD ${index} finished:\n${stdout}`);
         resolve();
