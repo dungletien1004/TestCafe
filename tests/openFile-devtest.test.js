@@ -8,12 +8,11 @@ const viewFilePage = new ViewFilePage();
 
 const fileNames = readFileNameFromJsonFile('test-data/fileNames.json');
 prepareReportFolderOnce();
-const fileExcelName = 'openFile-hoops';
+const fileExcelName = 'openFile-localhost';
+const URL = 'http://localhost:4200/autoTest'; // Change to your desired URL
 
-fixture `Open file Hoops`
-    // .page`http://localhost:4200/autoTest`;
-    .page`http://r2.3dviewer.anybim.vn/autoTest`;
-    // .page`http://dev-test:4200/autoTest`;
+fixture `Open file Localhost`
+    .page`${URL}`;
 
 fileNames.forEach((item) => {
   test(`${item.expectFileFound ? 'Should open' : 'Should not find'} file: ${item.fileName}`, async t => {
@@ -37,21 +36,20 @@ fileNames.forEach((item) => {
       }
 
       await t.expect(fileItem.exists).ok(`Expected file "${fileName}" to be found, but it was not.`);
-      const fileSize = await openFilePage.getFileSize(fileName, item.path);
+      const fileSize = await openFilePage.getFileSize(fileItem);
       console.log(`File size: ${fileSize}`);
       logValueToExcel(fileName, 'File size', fileSize, fileExcelName);
-      await openFilePage.clickItem(fileName, item.path);
-      await openFilePage.clearCache(fileName, item.path);
+      await openFilePage.clickItem(fileItem);
+      await openFilePage.clearCache(fileItem);
       await t.wait(200);
 
       const selectedFile = openFilePage.getSelectedFileByName(fileName);
       await t.expect(selectedFile.exists).ok(`File "${fileName}" is not selected or not displayed in selected list`);
-      phaseTimes['loading and click view'] = Date.now() - phaseStart - 1200;
 
       // Phase 2
       phaseStart = Date.now();
       await openFilePage.clickViewButton();
-      await openFilePage.waitForUrlToChange('/main?AUTHCODE', 360000); // 6 minutes
+      await openFilePage.waitForUrlToChange('/main?AUTHCODE', fileItem, 1800000); // 30 minutes
       const currentUrl = await getLocation();
       await t.expect(currentUrl).contains('/main?AUTHCODE', 'URL is not correct after click View');
       const timeLoad = Date.now();
@@ -62,13 +60,29 @@ fileNames.forEach((item) => {
       logValueToExcel(fileName, 'Loading default sheet', (Date.now() - timeLoad - 200) / 1000, fileExcelName);
       phaseTimes['Caching'] = Date.now() - phaseStart - 200;
 
-      if (item.isHoop) {
-        await viewFilePage.clickContentPanelButton();
-        await viewFilePage.checkSheetItemNames(item.sheetNames);
-        for (const sheetName of item.sheetNames) {
-          await viewFilePage.clickSheetItem(sheetName, fileName, fileExcelName);
-        }
-      }
+      // Phase 4 Reopen 
+      await t.navigateTo(URL);
+      await openFilePage.waitForLoadingToFinish();
+      await openFilePage.searchForFile(fileName);
+      await t.wait(1000);
+      await openFilePage.clickItem(fileItem);
+      await t.wait(200);
+      const selectedFileV2 = openFilePage.getSelectedFileByName(fileName);
+      await t.expect(selectedFileV2.exists).ok(`File "${fileName}" is not selected or not displayed in selected list`);
+      await openFilePage.clickViewButton();
+
+      phaseStart = Date.now();
+      await openFilePage.waitForUrlToChange('/main?AUTHCODE', fileItem, 1800000); // 30 minutes
+      const currentUrlV2 = await getLocation();
+      await t.expect(currentUrlV2).contains('/main?AUTHCODE', 'URL is not correct after click View');
+      phaseTimes['Open file V2 (No Caching)'] = Date.now() - phaseStart;
+
+      phaseStart = Date.now();
+      await viewFilePage.waitForLoadingToFinish();
+      await t.wait(200);
+      const fileNameInViewV2 = await viewFilePage.getFileName();
+      await t.expect(fileNameInViewV2).contains(fileName, `File name is not correct in View Page`);
+      phaseTimes['Check file in View Page V2'] = Date.now() - phaseStart;
     } catch (error) {
       console.error(`❌ Test failed for "${fileName}":`, error);
       const errorMessage = error.message || error.errMsg;

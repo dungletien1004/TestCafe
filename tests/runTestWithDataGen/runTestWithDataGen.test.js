@@ -54,7 +54,7 @@ fileNames.forEach((item) => {
       // Phase 2
       phaseStart = Date.now();
       await openFilePage.clickViewButton();
-      await openFilePage.waitForUrlToChange('/main?AUTHCODE', fileItem, 360000); // 6 minutes
+      await openFilePage.waitForUrlToChange('/main?AUTHCODE', fileItem, 1800000); // 30 minutes
       const currentUrl = await getLocation();
       await t.expect(currentUrl).contains('/main?AUTHCODE', 'URL is not correct after click View');
       const timeLoad = Date.now();

@@ -23,8 +23,9 @@
     "test:chrome:testFolder:headless:all": "run-s test:chrome:gendata:headless:local test:chrome:run-multi-thread:headless",
     "test:chrome:testFolder:headless:all:http": "run-s test:chrome:gendata:headless:http test:chrome:run-multi-thread:headless:http",
 
-    "test:chrome:local": "testcafe chrome ./tests/openFile.test.js -s takeOnFails=true",
+    "test:chrome:devtest": "testcafe chrome ./tests/openFile-devtest.test.js -s takeOnFails=true",
     "test:chrome:r23dviewer": "testcafe chrome ./tests/openFile-r23dviewer.test.js --disable-proxy --disable-native-automation -s takeOnFails=true",
+    "test:chrome:3dviewer": "testcafe chrome ./tests/openFile-3dviewer.test.js --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome": "testcafe chrome ./tests --disable-proxy --disable-native-automation -s takeOnFails=true",
     "test:chrome:hoops": "testcafe chrome ./tests/openFile-hoops.test.js -s takeOnFails=true",
 
