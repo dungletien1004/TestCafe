@@ -27,7 +27,6 @@ fileNames.forEach((item) => {
       await openFilePage.searchForFile(fileName);
       await t.wait(1000);
       const fileItem = await openFilePage.getItem(fileName, item.path);
-      logValueToExcel(fileName, 'Expected file found', item.expectFileFound, fileExcelName);
       if (!item.expectFileFound) {
         if (fileItem) {
           await t.expect(fileItem.exists).notOk(`File "${fileName}" was found but should NOT exist in search results`);

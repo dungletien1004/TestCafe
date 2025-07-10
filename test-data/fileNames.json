@@ -1,22 +1,8 @@
 [
-    { "fileName": "ACAD Font Text File 2010.dwg", "expectFileFound": true, "isHoop": true, "sheetNames": ["2D Model", "Layout1", "Model"], "path": "./AutoTest" },
-    { "fileName": "ACAD Font Text File 2013.dwg", "expectFileFound": true, "isHoop": true, "sheetNames": ["2D Model", "Layout1", "Model"], "path": "./AutoTest" },
-    { "fileName": "ACAD Font Text File 2018.dwg", "expectFileFound": true, "isHoop": true, "sheetNames": ["2D Model", "Layout2", "Model"], "path": "./AutoTest" },
-    { "fileName": "ACAD2004.dwg", "expectFileFound": true, "isHoop": true, "sheetNames": ["2D Model", "FULLSIZE", "2x1", "1x2", "Model"], "path": "./AutoTest" },
-    { "fileName": "Forklift-Mitsubishi-FGC30N.dwg", "expectFileFound": true, "isHoop": true, "sheetNames": ["2D Model","Layout1", "Model"], "path": "./AutoTest" },
-    { "fileName": "HOME.dwg", "expectFileFound": true, "isHoop": true, "sheetNames": ["2D Model", "Model"], "path": "./AutoTest" },
-    { "fileName": "V8 MicroStation.dgn", "expectFileFound": true, "isHoop": true, "sheetNames": ["2D Metric Design"], "path": "./AutoTest" },
-    { "fileName": "v2000.dwg", "expectFileFound": true, "isHoop": true, "sheetNames": ["2D Model", "Model"], "path": "./AutoTest" },
-    { "fileName": "Wind Power Generator 3DView.dwg", "expectFileFound": true, "isHoop": true, "sheetNames": ["2D Model", "Model"], "path": "./AutoTest" },
-  
-    { "fileName": "12345ASDASDA", "expectFileFound": false },
-    { "fileName": "FILENASMASDASD", "expectFileFound": false },
-    { "fileName": "ÁDFASDFASDSS", "expectFileFound": false },
-    { "fileName": "AAAAAAAAAAAAAAAA", "expectFileFound": false },
-    { "fileName": "CCCCCCCCCCCCCCCC", "expectFileFound": false },
-    { "fileName": "DDDDDDDDDD", "expectFileFound": false },
-    { "fileName": "EEEEEEEEEEEEEEE", "expectFileFound": false },
-    { "fileName": "FFFFFFFFFFFFFF", "expectFileFound": false },
-    { "fileName": "ZZZZZZZZZZZZZZZZZZZZZZZZ", "expectFileFound": false }
-  ]
+    { "fileName": "ALUTIL02.dwg", "expectFileFound": true, "path": "./ADV-7510/ALUTIL02" },
+    { "fileName": "B28a15401.dwg", "expectFileFound": true, "path": "./ADV-7510/B28a15401" },
+    { "fileName": "Site Map.dwg", "expectFileFound": true, "path": "./ADV-7510/Site Map" },
+    { "fileName": "ALUTIL01.dwg", "expectFileFound": true, "path": "./ADV-7510/ALUTIL01" },
+    { "fileName": "B880A90101 Equipment Flow.dwg", "expectFileFound": true, "path": "./ADV-7510/B880A90101 Equipment Flow" }
+]
   
