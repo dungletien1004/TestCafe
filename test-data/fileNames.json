@@ -1,8 +1,8 @@
 [
-    { "fileName": "ALUTIL02.dwg", "expectFileFound": true, "path": "./ADV-7510/ALUTIL02" },
-    { "fileName": "B28a15401.dwg", "expectFileFound": true, "path": "./ADV-7510/B28a15401" },
-    { "fileName": "Site Map.dwg", "expectFileFound": true, "path": "./ADV-7510/Site Map" },
-    { "fileName": "ALUTIL01.dwg", "expectFileFound": true, "path": "./ADV-7510/ALUTIL01" },
-    { "fileName": "B880A90101 Equipment Flow.dwg", "expectFileFound": true, "path": "./ADV-7510/B880A90101 Equipment Flow" }
+  { "fileName": "B28a15401.dwg", "expectFileFound": true, "path": "./ADV-7510/B28a15401" },
+  { "fileName": "Site Map.dwg", "expectFileFound": true, "path": "./ADV-7510/Site Map" },
+  { "fileName": "B880A90101 Equipment Flow.dwg", "expectFileFound": true, "path": "./ADV-7510/B880A90101EquipmentFlow" },
+  { "fileName": "ALUTIL01.dwg", "expectFileFound": true, "path": "./ADV-7510/ALUTIL01" },
+  { "fileName": "ALUTIL02.dwg", "expectFileFound": true, "path": "./ADV-7510/ALUTIL02" }
 ]
   

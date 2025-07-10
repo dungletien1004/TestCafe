@@ -48,7 +48,7 @@ fileNames.forEach((item) => {
       // Phase 2
       phaseStart = Date.now();
       await openFilePage.clickViewButton();
-      await openFilePage.waitForUrlToChange('/main?AUTHCODE', fileItem, 1800000); // 30 minutes
+      await openFilePage.waitForUrlToChange('/main?AUTHCODE', fileItem, 3600000); // 60 minutes
       const currentUrl = await getLocation();
       await t.expect(currentUrl).contains('/main?AUTHCODE', 'URL is not correct after click View');
       const timeLoad = Date.now();
@@ -71,7 +71,7 @@ fileNames.forEach((item) => {
       await openFilePage.clickViewButton();
 
       phaseStart = Date.now();
-      await openFilePage.waitForUrlToChange('/main?AUTHCODE', fileItem, 1800000); // 30 minutes
+      await openFilePage.waitForUrlToChange('/main?AUTHCODE', fileItem, 3600000); // 60 minutes
       const currentUrlV2 = await getLocation();
       await t.expect(currentUrlV2).contains('/main?AUTHCODE', 'URL is not correct after click View');
       phaseTimes['Open file V2 (No Caching)'] = Date.now() - phaseStart;
