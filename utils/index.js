@@ -161,6 +161,7 @@ export function logTimeToExcel(fileName, phaseTimes, excelName) {
 }
 
 export function logValueToExcel(fileName, title, value, excelName) {
+    console.log('🔥 logValueToExcel:', fileName, title, value, excelName);
     const logExcelPath = getExcelLogPath(excelName); // ✅ giống hàm logTimeToExcel
 
     let workbook;

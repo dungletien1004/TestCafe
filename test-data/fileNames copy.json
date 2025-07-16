@@ -1,11 +1,14 @@
 [
-  { "fileName": "B28a15401.dwg", "expectFileFound": true, "path": "./AutoTest/B28a15401" },
+   { "fileName": "B28a15401.dwg", "expectFileFound": true, "path": "./AutoTest/B28a15401" },
   { "fileName": "B880A90101 Equipment Flow.dwg", "expectFileFound": true, "path": "./AutoTest/B880A90101" },
   { "fileName": "Site Map.dwg", "expectFileFound": true, "path": "./AutoTest/Site Map" },
   { "fileName": "B880a15101.dwg", "expectFileFound": true, "path": "./AutoTest/B880A90102" },
   { "fileName": "HotelFloorplan.dwg", "expectFileFound": true, "path": "./AutoTest" },
   { "fileName": "3d-line-color-style-weight.dwg", "expectFileFound": true, "path": "./AutoTest" },
   { "fileName": "2d-line-color-style-weight.dwg", "expectFileFound": true, "path": "./AutoTest" },
-  { "fileName": "Plant-2pol.dwg", "expectFileFound": true, "path": "./AutoTest" }
+  { "fileName": "Plant-2pol.dwg", "expectFileFound": true, "path": "./AutoTest" },
+ { "fileName": "Plant-1pol.dwg", "expectFileFound": true, "path": "./AutoTest/Plant-1pol" },
+   { "fileName": "Wputility.dwg", "expectFileFound": true, "path": "./AutoTest/Wputility" },
+  { "fileName": "ALUTIL01.dwg", "expectFileFound": true, "path": "./AutoTest/ALUTIL01" },
+  { "fileName": "ALUTIL02.dwg", "expectFileFound": true, "path": "./AutoTest/ALUTIL02" }
 ]
-  

@@ -8,10 +8,10 @@ const viewFilePage = new ViewFilePage();
 
 const fileNames = readFileNameFromJsonFile('test-data/fileNames.json');
 prepareReportFolderOnce();
-const fileExcelName = 'openFile-3dviewer';
-const URL = 'http://3dviewer.anybim.vn/autoTest'; // Change to your desired URL
+const fileExcelName = 'openFile-Test-Performance-R223';
+const URL = 'http://localhost:2200/autoTest'; // Change to your desired URL
 
-fixture `Open file 3D Viewer`
+fixture `Open file Localhost`
     .page`${URL}`;
 
 fileNames.forEach((item) => {
