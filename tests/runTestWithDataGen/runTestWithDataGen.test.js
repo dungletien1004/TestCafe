@@ -1,5 +1,5 @@
 import { ClientFunction } from 'testcafe';
-import { readFileNameFromJsonFile, logTimeToExcel, prepareReportFolderOnce, logValueToExcel } from '../../utils';
+import { readFileNameFromJsonFile, logTimeToExcel, prepareReportFolderWithBackup, logValueToExcel } from '../../utils';
 import openPage from '../../page-object/pages/openPage';
 import ViewFilePage from '../../page-object/pages/viewFilePage';
 
@@ -11,7 +11,7 @@ const threadIndex = process.env.THREAD_INDEX || '1'; // Lấy từ biến môi t
 const filePath = `test-data/data-file/data-file-${threadIndex}.json`;
 const fileNames = readFileNameFromJsonFile(filePath);
 // const fileNames = readFileNameFromJsonFile('test-data/data-file/data-file.json');
-prepareReportFolderOnce();
+prepareReportFolderWithBackup();
 const fileExcelName = `runTestWithDataGen_thread${threadIndex}_Dev`;
 
 fixture `Run test with data generated from folder path`

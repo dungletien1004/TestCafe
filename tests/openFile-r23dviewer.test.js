@@ -1,13 +1,13 @@
 import { openPage, ViewFilePage } from '../page-object/pages';
 import { ClientFunction } from 'testcafe';
-import { readFileNameFromJsonFile, logTimeToExcel, prepareReportFolderOnce, logValueToExcel } from '../utils';
+import { readFileNameFromJsonFile, logTimeToExcel, prepareReportFolderWithBackup, logValueToExcel } from '../utils';
 
 const getLocation = ClientFunction(() => window.location.href);
 const openFilePage = new openPage();
 const viewFilePage = new ViewFilePage();
 
 const fileNames = readFileNameFromJsonFile('test-data/fileNames.json');
-prepareReportFolderOnce();
+prepareReportFolderWithBackup();
 const fileExcelName = 'openFile-r23dviewer';
 const URL = 'http://r2.3dviewer.anybim.vn/autoTest'; // Change to your desired URL
 

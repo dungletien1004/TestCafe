@@ -45,7 +45,7 @@ export function logFileInfo(
     fs.writeFileSync(outputPath, JSON.stringify(data, null, 2), 'utf-8');
   }
   
-export function prepareReportFolderOnce() {
+export function prepareReportFolderWithBackup() {
     const now = new Date();
     const yyyy = now.getFullYear();
     const mm = String(now.getMonth() + 1).padStart(2, '0');
@@ -55,7 +55,7 @@ export function prepareReportFolderOnce() {
     const ss = String(now.getSeconds()).padStart(2, '0');
 
     const dateStr = `${yyyy}-${mm}-${dd}`;     // 📁 day folder: 2025-05-30
-    const timeStr = `${hh}${min}${ss}`;        // 🕒 time to backup: 154230
+    const timeStr = `${hh}-${min}-${ss}`;        // 🕒 time to backup: 15-42-30
 
     const baseFolder = path.join(process.cwd(), 'report', 'excel');
     const todayFolder = path.join(baseFolder, dateStr); // ✅ day folder
@@ -80,6 +80,20 @@ export function prepareReportFolderOnce() {
         }
 
         console.log(`📁 Backed up ${todayFolder} to ${backupFolder}`);
+
+         // ❌ Delete all contents inside todayFolder after backup
+         for (const item of items) {
+            const srcPath = path.join(todayFolder, item);
+            const stat = fs.statSync(srcPath);
+
+            if (stat.isFile()) {
+                fs.unlinkSync(srcPath);
+            } else if (stat.isDirectory()) {
+                fs.rmSync(srcPath, { recursive: true, force: true });
+            }
+        }
+
+        console.log(`🧹 Cleaned up contents of ${todayFolder} after backup`);
     }
 
     // ensure day folder exists to save new file
