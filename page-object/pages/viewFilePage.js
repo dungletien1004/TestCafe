@@ -8,6 +8,9 @@ export default class ViewFilePage {
     this.ContentPanelButton = Selector('section.container-menu app-button-custom').nth(2);
     this.sheetItem = Selector('app-sheets .sheet-item');
     this.markupToolbarParent = Selector('.markup-toolbar-parent');
+    this.publishPDFButton = Selector('app-button-custom[icon="publishPDF"]');
+    this.savePDFButton = Selector('button[mat-flat-button]').withText('Save PDF');
+    this.dialogWaiting = Selector('app-dialog-waiting');
   }
 
   async getFileName() {
@@ -96,5 +99,26 @@ export default class ViewFilePage {
     }
 }
 
+  async clickPublishPDFButton() {
+    await t.click(this.publishPDFButton);
+  }
+
+  async clickSavePDFButton() {
+    await t.click(this.savePDFButton);
+  }
+
+  async waitForDialogLoadingToFinish(timeout = 1800000) { // 30 minutes = 1800000ms
+    await t.expect(this.dialogWaiting.exists).notOk(`❌ Dialog loading still exists after timeout (${timeout}ms)`, { timeout });
+  }
+
+  async publishPDF(fileName, fileExcelName) {
+    const phaseStart = Date.now();
+    await this.clickPublishPDFButton();
+    await this.clickSavePDFButton();
+    console.log('Waiting for publish PDF to finish');
+    await this.waitForDialogLoadingToFinish();
+    console.log('Publish PDF: ' + (Date.now() - phaseStart) / 1000, ' s');
+    logValueToExcel(fileName, 'Publish PDF', (Date.now() - phaseStart) / 1000, fileExcelName);
+  }
 
 }
