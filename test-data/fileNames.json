@@ -1,11 +1,11 @@
 [
-  { "fileName": "B28a15401.dwg", "expectFileFound": true, "path": "./AutoTest/B28a15401" },
-  { "fileName": "B880A90101 Equipment Flow.dwg", "expectFileFound": true, "path": "./AutoTest/B880A90101" },
-  { "fileName": "Site Map.dwg", "expectFileFound": true, "path": "./AutoTest/Site Map" },
-  { "fileName": "B880a15101.dwg", "expectFileFound": true, "path": "./AutoTest/B880A90102" },
-  { "fileName": "HotelFloorplan.dwg", "expectFileFound": true, "path": "./AutoTest" },
-  { "fileName": "3d-line-color-style-weight.dwg", "expectFileFound": true, "path": "./AutoTest" },
-  { "fileName": "2d-line-color-style-weight.dwg", "expectFileFound": true, "path": "./AutoTest" },
-  { "fileName": "Plant-2pol.dwg", "expectFileFound": true, "path": "./AutoTest" }
+  { "fileName": "B28a15401.dwg", "expectFileFound": true},
+  { "fileName": "B880A90101 Equipment Flow.dwg", "expectFileFound": true},
+  { "fileName": "Site Map.dwg", "expectFileFound": true},
+  { "fileName": "B880a15101.dwg", "expectFileFound": true},
+  { "fileName": "HotelFloorplan.dwg", "expectFileFound": true},
+  { "fileName": "3d-line-color-style-weight.dwg", "expectFileFound": true},
+  { "fileName": "2d-line-color-style-weight.dwg", "expectFileFound": true},
+  { "fileName": "Plant-2pol.dwg", "expectFileFound": true}
 ]
   
