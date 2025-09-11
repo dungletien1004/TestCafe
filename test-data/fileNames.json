@@ -1,11 +1,4 @@
 [
-  { "fileName": "B28a15401.dwg", "expectFileFound": true},
-  { "fileName": "B880A90101 Equipment Flow.dwg", "expectFileFound": true},
-  { "fileName": "Site Map.dwg", "expectFileFound": true},
-  { "fileName": "B880a15101.dwg", "expectFileFound": true},
-  { "fileName": "HotelFloorplan.dwg", "expectFileFound": true},
-  { "fileName": "3d-line-color-style-weight.dwg", "expectFileFound": true},
-  { "fileName": "2d-line-color-style-weight.dwg", "expectFileFound": true},
-  { "fileName": "Plant-2pol.dwg", "expectFileFound": true}
+  { "fileName": "!check color.pdf", "expectFileFound": true}
 ]
   

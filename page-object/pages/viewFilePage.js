@@ -11,6 +11,7 @@ export default class ViewFilePage {
     this.publishPDFButton = Selector('app-button-custom[icon="publishPDF"]');
     this.savePDFButton = Selector('button[mat-flat-button]').withText('Save PDF');
     this.dialogWaiting = Selector('app-dialog-waiting');
+    this.selectedSheet = Selector('label').withText('Selected Sheet');
   }
 
   async getFileName() {
@@ -107,6 +108,10 @@ export default class ViewFilePage {
     await t.click(this.savePDFButton);
   }
 
+  async clickSelectedSheet() {
+    await t.click(this.selectedSheet);
+  }
+
   async waitForDialogLoadingToFinish(timeout = 1800000) { // 30 minutes = 1800000ms
     await t.expect(this.dialogWaiting.exists).notOk(`❌ Dialog loading still exists after timeout (${timeout}ms)`, { timeout });
   }
@@ -114,6 +119,7 @@ export default class ViewFilePage {
   async publishPDF(fileName, fileExcelName) {
     const phaseStart = Date.now();
     await this.clickPublishPDFButton();
+    await this.clickSelectedSheet();
     await this.clickSavePDFButton();
     console.log('Waiting for publish PDF to finish');
     await this.waitForDialogLoadingToFinish();

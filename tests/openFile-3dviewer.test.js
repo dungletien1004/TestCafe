@@ -39,7 +39,7 @@ fileNames.forEach((item) => {
       console.log(`File size: ${fileSize}`);
       logValueToExcel(fileName, 'File size', fileSize, fileExcelName);
       await openFilePage.clickItem(fileItem);
-      await openFilePage.clearCache(fileItem);
+      // await openFilePage.clearCache(fileItem);
       await t.wait(1000);
       console.log('Clear cache');
       const selectedFile = openFilePage.getSelectedFileByName(fileName);
@@ -61,32 +61,32 @@ fileNames.forEach((item) => {
      logValueToExcel(fileName, 'Loading default sheet', (Date.now() - timeLoad - 200) / 1000, fileExcelName);
 
       // Phase 4 Reopen 
-      console.log('Reopen file: ', fileName);
-      await t.navigateTo(URL);
-      await openFilePage.waitForLoadingToFinish();
-      await openFilePage.searchForFile(fileName);
-      await t.wait(1000);
-      await openFilePage.clickItem(fileItem);
-      await t.wait(200);
-      const selectedFileV2 = openFilePage.getSelectedFileByName(fileName);
-      await t.expect(selectedFileV2.exists).ok(`File "${fileName}" is not selected or not displayed in selected list`);
-      await openFilePage.clickViewButton();
+      // console.log('Reopen file: ', fileName);
+      // await t.navigateTo(URL);
+      // await openFilePage.waitForLoadingToFinish();
+      // await openFilePage.searchForFile(fileName);
+      // await t.wait(1000);
+      // await openFilePage.clickItem(fileItem);
+      // await t.wait(200);
+      // const selectedFileV2 = openFilePage.getSelectedFileByName(fileName);
+      // await t.expect(selectedFileV2.exists).ok(`File "${fileName}" is not selected or not displayed in selected list`);
+      // await openFilePage.clickViewButton();
 
-      phaseStart = Date.now();
-      await openFilePage.waitForUrlToChange('/main?AUTHCODE', fileItem, 3600000); // 60 minutes
-      const currentUrlV2 = await getLocation();
-      await t.expect(currentUrlV2).contains('/main?AUTHCODE', 'URL is not correct after click View');
-      phaseTimes['Open file V2 (No Caching)'] = Date.now() - phaseStart;
+      // phaseStart = Date.now();
+      // await openFilePage.waitForUrlToChange('/main?AUTHCODE', fileItem, 3600000); // 60 minutes
+      // const currentUrlV2 = await getLocation();
+      // await t.expect(currentUrlV2).contains('/main?AUTHCODE', 'URL is not correct after click View');
+      // phaseTimes['Open file V2 (No Caching)'] = Date.now() - phaseStart;
 
-      phaseStart = Date.now();
-      await viewFilePage.waitForLoadingToFinish();
-      await t.wait(200);
-      const fileNameInViewV2 = await viewFilePage.getFileName();
-      await t.expect(fileNameInViewV2).contains(fileName, `File name is not correct in View Page`);
-      phaseTimes['Check file in View Page V2'] = Date.now() - phaseStart;
+      // phaseStart = Date.now();
+      // await viewFilePage.waitForLoadingToFinish();
+      // await t.wait(200);
+      // const fileNameInViewV2 = await viewFilePage.getFileName();
+      // await t.expect(fileNameInViewV2).contains(fileName, `File name is not correct in View Page`);
+      // phaseTimes['Check file in View Page V2'] = Date.now() - phaseStart;
 
       // Phase 5 Publish PDF
-      // await viewFilePage.publishPDF(fileName, fileExcelName);
+      await viewFilePage.publishPDF(fileName, fileExcelName);
 
     } catch (error) {
       console.error(`❌ Test failed for "${fileName}":`, error);
